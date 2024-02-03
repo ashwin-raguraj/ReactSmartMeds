@@ -1,5 +1,5 @@
 .formlbg {
-    background-image: url('../Assets/login.png');
+    background-image: url('../Assets/Signup.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -7,6 +7,7 @@
 }
 .form-group label{
     color: aliceblue;
+    
 
 }
   

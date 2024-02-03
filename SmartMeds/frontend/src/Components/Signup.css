@@ -11,7 +11,7 @@ form{
     margin-top: 20px
 }
 .formbg{
-    background-image: url("../Assets/Signup.png")
+    background-image: url("../Assets/Signup.jpg")
     
 
 }
@@ -21,3 +21,26 @@ h3{
 }
 .para{
     color: azure;}
+
+
+    .toggle-container {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+      }
+      
+      .toggle-button {
+        padding: 10px 20px;
+        cursor: pointer;
+        
+        border: 1px solid #ccc;
+        background-color: #fff;
+        color: #333;
+      }
+      
+      .toggle-button.active {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+      }
+      
