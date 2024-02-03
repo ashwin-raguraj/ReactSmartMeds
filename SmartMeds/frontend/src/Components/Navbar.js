@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className='navbar'>
         <div className='site-title'>
             <img src={require('../Assets/Icon.png')} alt=""/>
-            <a href="/" >Foodiko</a>
+            <a href="/" >SmartMeds Hub</a>
         </div> 
         <ul>
             <li className='nav-item'>

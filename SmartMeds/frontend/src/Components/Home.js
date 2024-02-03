@@ -13,15 +13,15 @@ const Home = () => {
             <div className='home-body'>
                 <div className='text-container'>
                     <h1>
-                        Discover new flavors, delivered to your door.
+                        Bridging Generations in HealthCare.
                     </h1>
                     <div>
-                        <h2>Welcome to Foodiko</h2>
+                        <h2>Welcome to SmartMeds Hub</h2>
                         <p>We are a one-stop-shop for all your food needs, 
                             bringing together the best restaurants and cuisines from around the world.</p>
                     </div>
                 </div>
-                <img className='img-fluid rounded float-right' src={require('../Assets/Home-Page-Food.png')} alt="" />
+                <img className='img-fluid rounded float-right' src={require('../Assets/home1.jpg')} alt="" />
             </div>
             <div className="container-fluid p-0">
                 <div class="d-flex justify-content-between gap-5">

@@ -14,7 +14,7 @@
     padding: 0rem 2rem;
 }
 .text-container h1{
-    color:coral;
+    color:#1c4ee6;
     display: flex;
     align-items: center;      
 }
@@ -47,11 +47,11 @@
     font-size: larger;
 }
 .custom-button {
-    background-color:coral; 
+    background-color:#1c4ee6; 
     color: floralwhite; 
   }
   .custom-button:hover {
     background-color: floralwhite; 
-    color: coral; 
-    border: 2px solid coral;
+    color: #1c4ee6; 
+    border: 2px solid #1c4ee6;
   }

@@ -1,7 +1,7 @@
 
 .navbar{
     background-color:floralwhite;
-    color:#ff7f50;
+    color:#1c4ee6;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,7 +42,7 @@
 }
 
 .navbar li :hover{
-    color: red;
+    color: blue;
 }
 
 .dropdown-menu {
@@ -59,7 +59,7 @@
   .dropdown-menu li {
     list-style: none;
     padding: 5px 0;
-    color:coral;
+    color:#1c4ee6;
   }
   
   .dropdown-menu li:hover {

@@ -13,7 +13,7 @@ const Navbar2 = () => {
     <nav className='navbar'>
         <div className='site-title'>
             <img src={require('../Assets/Icon.png')} alt=""/>
-            <div >Foodiko</div>
+            <div >SmartMeds Hub</div>
         </div> 
         <ul>
             <li className='nav-item'>
