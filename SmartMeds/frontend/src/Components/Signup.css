@@ -1,0 +1,23 @@
+form{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+      
+}
+.btn{
+    margin-top: 20px
+}
+.formbg{
+    background-image: url("../Assets/Signup.png")
+    
+
+}
+h3{
+    color: azure;
+    
+}
+.para{
+    color: azure;}
