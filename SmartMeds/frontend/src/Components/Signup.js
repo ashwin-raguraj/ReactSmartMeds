@@ -134,6 +134,11 @@ export default function Signup() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [age, setAge] = useState('');
+  const [patientId, setpatientId] = useState('');
+  const [doctorId, setdoctorId] = useState('');
+  const [department, setdepartment] = useState('');
+  const [hospital, setHospital] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -144,7 +149,7 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const userData = { firstName, lastName, email, password, userType };
+    const userData = { firstName, lastName, email, password, userType, patientId,age,hospital,department };
     console.log(userData);
 
     axios
@@ -230,6 +235,8 @@ export default function Signup() {
                 type='text'
                 className='form-control'
                 id='patientId'
+                value={patientId}
+                onChange={(e) => setpatientId(e.target.value)}
                 placeholder='Patient ID'
                 required
               />
@@ -240,6 +247,8 @@ export default function Signup() {
                 type='text'
                 className='form-control'
                 id='age'
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
                 placeholder='Age'
                 required
               />
@@ -264,17 +273,21 @@ export default function Signup() {
                 type='text'
                 className='form-control'
                 id='department'
+                value={department}
+                onChange={(e) => setdepartment(e.target.value)}
                 placeholder='Department'
                 required
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='hospitalName'>Hospital Name</label>
+              <label htmlFor='hospital'>Hospital Name</label>
               <input
                 type='text'
                 className='form-control'
-                id='hospitalName'
-                placeholder='Hospital Name'
+                id='hospital'
+                value={hospital}
+                onChange={(e) => setHospital(e.target.value)}
+                placeholder='Hospital'
                 required
               />
             </div>
@@ -319,3 +332,132 @@ export default function Signup() {
     </div>
   );
 }
+
+
+// import React, { useState, useRef } from 'react';
+// import { Link } from 'react-router-dom';
+// import './Signup.css';
+// import axios from 'axios';
+
+// export default function Signup() {
+//   const [userType, setUserType] = useState('patient');
+//   const [firstName, setFirstName] = useState('');
+//   const [lastName, setLastName] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [confirmPassword, setConfirmPassword] = useState('');
+//   const [capturedImage, setCapturedImage] = useState(null);
+
+//   const videoRef = useRef(null);
+
+//   const toggleUserType = () => {
+//     setUserType((prevType) => (prevType === 'patient' ? 'doctor' : 'patient'));
+//   };
+
+//   const startCamera = () => {
+//     navigator.mediaDevices
+//       .getUserMedia({ video: true })
+//       .then((stream) => {
+//         videoRef.current.srcObject = stream;
+//         videoRef.current.play();
+//       })
+//       .catch((error) => console.error('Error accessing camera:', error));
+//   };
+
+//   const captureImage = () => {
+//     const canvas = document.createElement('canvas');
+//     canvas.width = videoRef.current.videoWidth;
+//     canvas.height = videoRef.current.videoHeight;
+//     const context = canvas.getContext('2d');
+//     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+//     const imageDataURL = canvas.toDataURL('image/png');
+//     setCapturedImage(imageDataURL);
+//     videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//     const userData = { firstName, lastName, email, password, userType, capturedImage };
+//     console.log(userData);
+
+//     axios
+//       .post('http://127.0.0.1:8000/signup/', userData)
+//       .then((response) => {
+//         if (response.data.success) {
+//           window.location.href = '/Login';
+//         } else {
+//           alert('Signup failed. Please try again.');
+//         }
+//       })
+//       .catch((error) => {
+//         console.error('Error:', error);
+//       });
+//   };
+
+//   return (
+//     <div className='formbg'>
+//       <form onSubmit={handleSubmit}>
+//         <h3 style={{ fontFamily: "'Poppins', sans-serif" }}>Sign Up</h3>
+//         <div className='form-group'>
+//           <label style={{ fontFamily: "'Poppins', sans-serif" }}>User Type:</label>
+//           <div className='toggle-container'>
+//             <button
+//               type='button'
+//               onClick={toggleUserType}
+//               className={`toggle-button ${userType === 'patient' ? 'active' : ''}`}
+//               style={{ fontFamily: "'Poppins', sans-serif" }}
+//             >
+//               Patient
+//             </button>
+//             <button
+//               type='button'
+//               onClick={toggleUserType}
+//               className={`toggle-button ${userType === 'doctor' ? 'active' : ''}`}
+//               style={{ fontFamily: "'Poppins', sans-serif" }}
+//             >
+//               Doctor
+//             </button>
+//           </div>
+//         </div>
+//         <div className='form-group'>
+//           <label htmlFor='firstName'>First Name</label>
+//           <input
+//             type='text'
+//             className='form-control'
+//             id='firstName'
+//             value={firstName}
+//             onChange={(e) => setFirstName(e.target.value)}
+//             placeholder='First Name'
+//             required
+//           />
+//         </div>
+//         {/* ... (other form fields) */}
+//         {userType === 'patient' && (
+//           <>
+//             {/* ... (other patient-specific form fields) */}
+//             <div className='form-group'>
+//               <button type='button' onClick={startCamera}>
+//                 Start Camera
+//               </button>
+//               <button type='button' onClick={captureImage}>
+//                 Capture Image
+//               </button>
+//               {capturedImage && <img src={capturedImage} alt='Captured' />}
+//             </div>
+//           </>
+//         )}
+//         <button type='submit' className='btn btn-primary'>
+//           Sign Up
+//         </button>
+//         <p className='para'>Are you an existing user?</p>
+//         <Link to='/Login'>
+//           <button type='submit' className='btn btn-secondary'>
+//             Login
+//           </button>
+//         </Link>
+//       </form>
+//       <video ref={videoRef} style={{ display: 'none' }}></video>
+//     </div>
+//   );
+// }

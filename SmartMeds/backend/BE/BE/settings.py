@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FoodApp',
     'rest_framework',
-  
     'corsheaders',
    
 ]
@@ -91,7 +90,7 @@ WSGI_APPLICATION = 'BE.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'jj3',
+        'NAME': 'medtest',
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': 'localhost', # optional, default value is 'localhost'
