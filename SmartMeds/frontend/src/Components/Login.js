@@ -124,7 +124,7 @@ export default function Login() {
   return (
     <div className='formlbg'>
       <form onSubmit={handleSubmit}>
-        <h3 style={{ fontFamily: "'Poppins', sans-serif" }}>Login</h3>
+      <h3 style={{ fontFamily: "'Poppins', sans-serif", color: '#000000' }}>Login</h3>
         <div className='form-group'>
           <label style={{ fontFamily: "'Poppins', sans-serif" }}>User Type:</label>
           <div className='toggle-container'>

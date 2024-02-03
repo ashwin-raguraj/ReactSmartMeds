@@ -15,7 +15,7 @@ const Terms = () => {
         <div className="card mt-3 mb-5" style={styles.container}>
         <h1 style={styles.heading}>Terms and Conditions</h1>
         <div style={styles.content}>
-        <p>Welcome to Foodiko!</p>
+        <p>Welcome to SmartMeds Connect!</p>
             <p>By using our website and services, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.</p>
 
             <h2>1. Acceptance of Terms</h2>

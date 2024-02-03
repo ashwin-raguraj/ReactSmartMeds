@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className="site-title">
                     <img src={require('../Assets/Icon.png')} alt=""/>
                     <p className="text-xl-center">
-                        Foodiko
+                        SmartMeds Connect
                     </p>
                 </div>
                 <div className="row justify-content-center">
@@ -18,7 +18,7 @@ const Footer = () => {
                     <div className="col-md-3 col-sm-6">
                         <h4>Contact Us</h4>
                         <ul class="list-unstyled">
-                            <li> Email: support@foodiko.com</li>
+                            <li> Email: support@smartmeds.com</li>
                             <li> Phone: 2947283746, 8394593488</li>
                             
                         </ul>     
@@ -60,7 +60,7 @@ const Footer = () => {
                 {/* Footer Bottom */}
                 <div className="footer-bottom">
                     <p className="text-xs-center">
-                        &copy;{new Date().getFullYear()} Foodiko
+                        &copy;{new Date().getFullYear()} SmartMeds Hub
                     </p>
                 </div>
             </div>

@@ -16,39 +16,36 @@ const Home = () => {
                         Bridging Generations in HealthCare.
                     </h1>
                     <div>
-                        <h2>Welcome to SmartMeds Hub</h2>
-                        <p>We are a one-stop-shop for all your food needs, 
-                            bringing together the best restaurants and cuisines from around the world.</p>
+                        <h2>Welcome to SmartMeds Connect</h2>
+                        <p>Your Trusted Partner in Healthcare Management</p>
                     </div>
                 </div>
                 <img className='img-fluid rounded float-right' src={require('../Assets/home1.jpg')} alt="" />
             </div>
             <div className="container-fluid p-0">
                 <div class="d-flex justify-content-between gap-5">
-                    <img src={require('../Assets/Home-Food-1.png')} class="img1 rounded float-left img-fluid " alt=""/>
+                    <img src={require('../Assets/home2.jpeg')} class="img1 rounded float-left img-fluid " alt=""/>
                     <div className='txt1 d-flex flex-column justify-content-center'>
-                        <h2>Order your favorite food from your favorite restaurant</h2>
-                        <p>With Foodiko, you can order from your favorite restaurants with just a few clicks.
-                             Whether you're craving pizza, sushi, or anything in between, we've got you covered.</p>
+                        <h2>Elevating Healthcare with Smart Medication Management</h2>
+                        <p>Foster a collaborative healthcare environment by involving family members and healthcare providers in the patient's care journey.</p>
                     </div>
                 </div>
             </div>
             <div className="container-fluid p-0">
                 <div class="d-flex justify-content-between gap-5">
                     <div className='txt1 d-flex flex-column justify-content-center'>
-                        <h2>Quick and easy ordering</h2>
-                        <p>Our website is designed to make ordering food as quick and easy as possible. 
-                            Simply choose your restaurant, browse the menu, and place your order – it's that simple!</p>
+                        <h2>Empowering Health, Simplifying Lives</h2>
+                        <p>Seamless prescription uploads empower doctors to create personalized medication schedules, while real-time updates keep both healthcare providers and family members informed about the patient's medication adherence and overall health.</p>
                     </div>
-                    <img src={require('../Assets/Home-Food-2.png')} class="img1 rounded float-right img-fluid "  alt=""/>
+                    <img src={require('../Assets/home3.jpeg')} class="img1 rounded float-right img-fluid "  alt=""/>
                 </div>
             </div>
             <div className="container-fluid p-0">
                 <div class="d-flex justify-content-between gap-5">
-                    <img src={require('../Assets/Home-Food-3.png')} class="img1 rounded float-left img-fluid " alt=""/>
+                    <img src={require('../Assets/home5.webp')} class="img1 rounded float-left img-fluid " alt=""/>
                     <div className='txt1 d-flex flex-column justify-content-center'>
-                        <h2>Ready to order delicious food? Sign up or log in now!</h2>
-                        <p>It only takes a few seconds to sign up or log in – why not get started now?</p>
+                        <h2>Get connected to SmartMeds Hub. Sign up or log in now!</h2>
+                        <p>It only takes a few seconds to sign up or log in – why not get started?</p>
                         <div className="d-flex flex-column gap-3">
                             <Link to='/Signup' class="btn custom-button btn-lg">Sign Up</Link>
                             <Link to='/Login' class="btn custom-button btn-lg">Login</Link>

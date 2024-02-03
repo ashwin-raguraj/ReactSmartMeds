@@ -14,8 +14,8 @@ const Security = () => {
       <div className="card mt-3 mb-5" style={styles.container}>
         <h1 style={styles.heading}>Security</h1>
         <div style={styles.content}>
-          <p>Welcome to Foodiko!</p>
-          <p>At Foodiko, we prioritize the security of your information. This Security page outlines the measures we take to protect your data and ensure a secure user experience. Please read this information carefully.</p>
+          <p>Welcome to SmartMeds Connect</p>
+          <p>At SmartMeds Connect, we prioritize the security of your information. This Security page outlines the measures we take to protect your data and ensure a secure user experience. Please read this information carefully.</p>
 
           <h2>1. Data Encryption</h2>
           <p>We use industry-standard encryption protocols to protect the transmission and storage of your personal information. This includes the use of secure HTTPS connections.</p>

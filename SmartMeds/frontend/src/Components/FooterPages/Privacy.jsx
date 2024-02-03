@@ -14,8 +14,8 @@ const Privacy = () => {
       <div className="card mt-3 mb-5" style={styles.container}>
         <h1 style={styles.heading}>Privacy Policy</h1>
         <div style={styles.content}>
-          <p>Welcome to Foodiko!</p>
-          <p>At Foodiko, we take your privacy seriously. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website and services. Please read this policy carefully.</p>
+          <p>Welcome to SmartMeds Connect</p>
+          <p>At SmartMeds Connect, we take your privacy seriously. This Privacy Policy outlines how we collect, use, and protect your personal information when you use our website and services. Please read this policy carefully.</p>
 
           <h2>1. Information We Collect</h2>
           <p>a) Personal Information: When you create an account or use our services, we may collect personal information such as your name, email address, and contact details.</p>
@@ -44,7 +44,7 @@ const Privacy = () => {
           <p>We reserve the right to update or modify this Privacy Policy at any time. Any changes will be effective immediately upon posting on our website.</p>
 
           <h2>9. Contact Us</h2>
-          <p>If you have any questions or concerns about our Privacy Policy, please contact us at privacy@foodiko.com.</p>
+          <p>If you have any questions or concerns about our Privacy Policy, please contact us at privacy@smartmeds.com.</p>
         </div>
       </div>
     </div>
