@@ -80,41 +80,51 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [id, setid] = useState('');
   const [password, setPassword] = useState('');
   const [userType, setUserType] = useState('patient'); // Default to patient
   const Navigate = useNavigate();
 
-  const users = [
-    { email: 'patient@gmail.com', password: '123456789', userType: 'patient', id: 'P123' },
-    { email: 'doctor@gmail.com', password: '123456789', userType: 'doctor', id: 'D456' },
-    { email: 'admin@gmail.com', password: '123456789', userType: 'admin', id: 'A789' },
-  ];
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = { email, password, userType };
+    const userData = { id, password, userType };
     console.log(userData);
 
-    axios.post('http://127.0.0.1:8000/login/', userData)
-      .then(res => {
-        console.log(res);
+    axios
+      .post('http://127.0.0.1:8000/login/', userData)
+      .then((response) => {
+        if (response.data.success) {
+          window.location.href = '/Dashboard';
+        } else {
+          alert('Invalid userID, password, or user type.');
+        }
       })
-      .catch(err => {
-        console.log(err);
+      .catch((error) => {
+        console.error('Error:', error);
       });
 
-    const user = users.find((user) => {
-      return user.email === email && user.password === password && user.userType === userType;
-    });
+    // axios.post('http://127.0.0.1:8000/login/', userData)
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
 
-    if (user) {
-      Navigate("/Dashboard");
-    } else {
-      alert("Invalid username, password, or user type.");
-    }
+    // const user = users.find((user) => {
+    //   return user.email === email && user.password === password && user.userType === userType;
+    // });
+
+    // if (user) {
+    //   Navigate("/Dashboard");
+    // } else {
+    //   alert("Invalid userID, password, or user type.");
+    // }
   };
 
   const toggleUserType = () => {
@@ -152,6 +162,8 @@ export default function Login() {
               type='text'
               className='form-control'
               id='patientId'
+              value={id}
+            onChange={(e) => setid(e.target.value)}
               placeholder='Patient ID'
               required
             />
@@ -165,6 +177,8 @@ export default function Login() {
               type='text'
               className='form-control'
               id='doctorId'
+                value={id}
+            onChange={(e) => setid(e.target.value)}
               placeholder='Doctor ID'
               required
             />
@@ -189,6 +203,14 @@ export default function Login() {
         <button type="submit" className="btn btn-primary">
           Login
         </button>
+
+       
+        <p className='para'>Not Registered?</p>
+        <Link to='/Signup'>
+          <button type='submit' className='btn btn-secondary'>
+            Signup
+          </button>
+        </Link>
       </form>
     </div>
   );

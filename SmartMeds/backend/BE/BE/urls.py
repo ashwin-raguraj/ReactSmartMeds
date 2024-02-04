@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from FoodApp.views import SignupView
+from FoodApp.views import SignupView, LoginView
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('signup/',csrf_exempt( SignupView.as_view()), name='signup'),
-    # path('login/', csrf_exempt( LoginView.as_view()), name='login'),
+    path('login/', csrf_exempt( LoginView.as_view()), name='login'),
     # path('reset_password/', ResetPasswordView.as_view(), name='reset_password'),
    
 

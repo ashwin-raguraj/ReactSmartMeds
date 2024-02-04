@@ -66,31 +66,34 @@ class SignupView(View):
 
 
 
-# class LoginView(View):
-#     @csrf_exempt
-#     def post(self, request):
-#         # Deserialize JSON data from request body
-#         data = json.loads(request.body)        
-#         existing_user = None
-#         print('Received data:', data)
+class LoginView(View):
+    @csrf_exempt
+    def post(self, request):
+        # Deserialize JSON data from request body
+        data = json.loads(request.body)        
+        existing_user = None
+        print('Received data:', data)
      
        
-#         # Check if the user already exists in the database
-#         existing_user = User.objects.filter(email=data.get('email'), password=data.get('password')).first()
+        #Check if the user already exists in the database
+        if data['userType'] == 'patient':
+            existing_user = Patient.objects.filter(patient_id=data.get('id'), password=data.get('password')).first()
+        else:
+            existing_user = Doctor.objects.filter(doctor_id=data.get('id'), password=data.get('password')).first()
     
         
-#         if existing_user is not None:
+        if existing_user is not None:
            
-#             user_id= existing_user.user_id
+            user_id= existing_user.patient_id
             
-#            #storing user id for session 
-#             request.session['user_id'] = user_id 
+           #storing user id for session 
+            request.session['user_id'] = user_id 
             
-#             print(existing_user.user_id)
-#             return JsonResponse({'success':True, 'user_id': user_id})
-#             #return JsonResponse({'success':True})
-#         else:
-#             return JsonResponse({'error': 'User does not exist'})
+            print(existing_user.patient_id)
+            return JsonResponse({'success':True, 'user_id': user_id})
+            #return JsonResponse({'success':True})
+        else:
+            return JsonResponse({'error': 'User does not exist'})
       
 
 
