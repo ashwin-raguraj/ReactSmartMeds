@@ -141,6 +141,7 @@ export default function Signup() {
   const [hospital, setHospital] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
   const toggleUserType = () => {
     setUserType((prevType) => (prevType === 'patient' ? 'doctor' : 'patient'));
@@ -148,6 +149,17 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  
+  
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      return;
+    }
+
+    // Reset password match status
+    setPasswordsMatch(true);
+
 
     const userData = { firstName, lastName, email, password, userType, patientId,age,hospital,department };
     console.log(userData);
@@ -318,6 +330,7 @@ export default function Signup() {
             required
             minLength='8'
           />
+            {!passwordsMatch && <p className='error-message'>Passwords do not match</p>}
         </div>
         <button type='submit' className='btn btn-primary'>
           Sign Up

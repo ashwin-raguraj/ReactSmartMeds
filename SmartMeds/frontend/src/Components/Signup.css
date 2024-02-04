@@ -11,16 +11,17 @@ form{
     margin-top: 20px
 }
 .formbg{
-    background-image: url("../Assets/Signup.jpg")
-    
+    background-image: url("../Assets/signup.jpg");
+    background-position: center; 
+    background-size: cover; 
 
 }
 h3{
-    color: azure;
+    color: black;
     
 }
 .para{
-    color: azure;}
+    color: black;}
 
 
     .toggle-container {
