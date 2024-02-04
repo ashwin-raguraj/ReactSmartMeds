@@ -84,13 +84,22 @@ class LoginView(View):
         
         if existing_user is not None:
            
-            user_id= existing_user.patient_id
+           if data['userType'] == 'patient':
+                patient_id= existing_user.patient_id
             
            #storing user id for session 
-            request.session['user_id'] = user_id 
+            #request.session['user_id'] = user_id 
             
-            print(existing_user.patient_id)
-            return JsonResponse({'success':True, 'user_id': user_id})
+                print(patient_id)
+                return JsonResponse({'success':True})
+           else:
+                doctor_id= existing_user.doctor_id
+            
+           #storing user id for session 
+            #request.session['user_id'] = user_id 
+            
+                #print(doctor_id)
+                return JsonResponse({'success':True})
             #return JsonResponse({'success':True})
         else:
             return JsonResponse({'error': 'User does not exist'})

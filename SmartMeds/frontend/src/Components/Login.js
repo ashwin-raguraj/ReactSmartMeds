@@ -99,7 +99,11 @@ export default function Login() {
       .post('http://127.0.0.1:8000/login/', userData)
       .then((response) => {
         if (response.data.success) {
-          window.location.href = '/Dashboard';
+          if (userType === 'patient') {
+            window.location.href = '/Dashboard'; // Redirect to Dashboard1 for patients
+          } else if (userType === 'doctor') {
+            window.location.href = '/Dashboard'; // Redirect to Dashboard2 for doctors
+          }
         } else {
           alert('Invalid userID, password, or user type.');
         }

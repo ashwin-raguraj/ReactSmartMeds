@@ -3,20 +3,20 @@
     padding:0;
 }
 .bg-img{
-   background-image:url('../Assets/Dashboard-Main.png') ;
+   background-image:url('../Assets/dashboard.jpg') ;
    background-size:cover;
    background-repeat: no-repeat;
    width: 100vw;
-   height: 70vh;
+   height: 15vh;
 }
 .fg-content{
   position: absolute;
-  top:3rem;
+  top:2rem;
 }
 .fg-content h1{
-    color:white;
-    font-family: 'Freehand', cursive;
-    font-size:9rem;
+    color:black;
+    font-family: 'Poppins', cursive;
+    font-size:5rem;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.777);
     
 }

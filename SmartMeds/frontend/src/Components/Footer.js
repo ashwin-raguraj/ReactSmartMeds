@@ -9,7 +9,7 @@ const Footer = () => {
                 {/* Footer Bottom */}
                 <div className="site-title">
                     <img src={require('../Assets/Icon.png')} alt=""/>
-                    <p className="text-xl-center">
+                    <p className="text-xl-center" >
                         SmartMeds Connect
                     </p>
                 </div>
@@ -73,7 +73,7 @@ export default Footer
 
 const FooterContainer=styled.footer`
 .footer-middle{
-    background: var(--bgOrange);
+    background: lightblue;
     padding-top: 3rem;
     width:100vw;
     position:relative;
@@ -86,7 +86,7 @@ const FooterContainer=styled.footer`
 }
 
 ul li a{
-    color:var(--mainGrey);
+    color:black;
     text-decoration:none;
 }
 

@@ -13,7 +13,7 @@ const Navbar2 = () => {
     <nav className='navbar'>
         <div className='site-title'>
             <img src={require('../Assets/Icon.png')} alt=""/>
-            <div >SmartMeds Hub</div>
+            <div >SmartMeds Connect</div>
         </div> 
         <ul>
             <li className='nav-item'>
@@ -35,7 +35,7 @@ const Navbar2 = () => {
                 <ImMenu3 onClick={toggleDropdown} className='drop-down-menu-icon' size={37} />
                 {isDropdownOpen && (
                     <ul className="dropdown-menu d-flex flex-column">
-                    <li><Link to=''>About us</Link></li>
+                    <li><Link to='/About'>About us</Link></li>
                     <li><Link to='/Complaint'>Complaint</Link></li>
                     <li><Link to=''>Sign out</Link></li>
                     </ul>

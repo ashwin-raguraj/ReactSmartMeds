@@ -1,122 +1,174 @@
-import React,{useState,useEffect} from 'react'
-import Navbar2 from './Navbar2'
-import Footer from './Footer'
+import React, { useState, useEffect } from 'react';
+import Navbar2 from './Navbar2';
+import Footer from './Footer';
+import axios from 'axios';
+import Calendar from './Calendar';
 import './Dashboard.css'
-import ProductSlider from './ProductSlider'
-import SearchBar from './SearchBar'
-import axios from 'axios'
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+
 
 const Dashboard = () => {
+  const [patientInfo, setPatientInfo] = useState({});
+  const [consultationDetails, setConsultationDetails] = useState([]);
+  const [doctorInfo, setDoctorInfo] = useState({});
+  const [prescriptionDetails, setPrescriptionDetails] = useState([]);
+  const [medicationCalendar, setMedicationCalendar] = useState([]);
 
-  const [searchResults, setSearchResults] = useState([]);
+  const fetchDashboardData = async () => {
+    try {
+      const patientResponse = await axios.get('http://localhost:3030/patient-info');
+      if (patientResponse && patientResponse.data) {
+        setPatientInfo(patientResponse.data);
+      }
 
-  const handleSearchResults = (results) => {
-    setSearchResults(results);
-  }
+      const consultationResponse = await axios.get('http://localhost:3030/consultation-details');
+      if (consultationResponse && consultationResponse.data) {
+        setConsultationDetails(consultationResponse.data);
+      }
 
-  const [recommended, setrecommended] = useState([]);
-  const [popular, setpopular] = useState([]);
-  const [recommendedRestaurants, setrecommendedRestaurants] = useState([]);
-  const fetchItems=async()=>{
-    try{
-        const response=await axios.get("http://localhost:3030/food");//api for food recommedation
-        if (response && response.data) { // Check if response and response.data exist
-          setrecommended(response.data);
-        }
-        
-    }
-    catch (error) {
-        console.log(error);
-    
-  }
-  try{
-    const response=await axios.get("http://localhost:3030/food");//api for restaurant recommedation
-    if (response && response.data) { // Check if response and response.data exist
-      setrecommendedRestaurants(response.data);
-      console.log(response.data)
-    }
-      
-  }
-  catch (error) {
+      const doctorResponse = await axios.get('http://localhost:3030/doctor-info');
+      if (doctorResponse && doctorResponse.data) {
+        setDoctorInfo(doctorResponse.data);
+      }
+       // Fetch Prescription Details
+       const prescriptionResponse = await axios.get('http://localhost:3030/prescription-details');
+       if (prescriptionResponse && prescriptionResponse.data) {
+         setPrescriptionDetails(prescriptionResponse.data);
+       }
+ 
+       // Fetch Medication Calendar
+       const calendarResponse = await axios.get('http://localhost:3030/medication-calendar');
+       if (calendarResponse && calendarResponse.data) {
+         setMedicationCalendar(calendarResponse.data);
+       }
+    } catch (error) {
       console.log(error);
     }
-    try{
-      const response=await axios.get("http://localhost:3030/food");//api for popular foods
-      if (response && response.data) { // Check if response and response.data exist
-        setpopular(response.data);
-          
-      }
-        
-    }
-    catch (error) {
-        console.log(error);
-      }
+  };
 
-    
-  }
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
 
-  useEffect(()=>{
-    fetchItems()
-    },[]);
-
-    
   return (
+    
     <div className='dashboard'>
-        <nav>
-            <Navbar2/>
-        </nav>
-        <body className='dashboard-body'>
-
-            <div className="bg-img position-relative d-flex justify-content-center">
+      <nav>
+        <Navbar2 />
+      </nav>
+      <body className='dashboard-body'>
+      {/* <div className="bg-img position-relative d-flex justify-content-center">
               <div className="fg-content d-flex flex-column justify-content-center align-items-center gap-5 ">
-                <h1 className>Satisfy your cravings</h1> 
-                <SearchBar onSearchResults={handleSearchResults} />
+                <h1 className>Welcome </h1> 
+              </div>
+            </div> */}
+        <div className='container'>
+          <div className='row'>
+            {/* Patient Information Section */}
+            <div className='col-md-4'>
+              <div className='container pb-5'>
+                <h2 className='pt-5'>Patient Information</h2>
+                <div className='container p-0 m-0'>
+                  {/* <p>Patient ID: {patientInfo.patientId}</p>
+                  <p>Name: {patientInfo.firstName} {patientInfo.lastName}</p>
+                  <p>Age: {patientInfo.age}</p>
+                  <p>Email: {patientInfo.email}</p> */}
+                  <p>Patient ID: 101</p>
+                  <p>Name: ABCD EFG</p>
+                  <p>Age: 56</p>
+                  <p>Email: abcd@gmail.com</p>
+                </div>
               </div>
             </div>
-            {searchResults.length > 0 &&
-              <div className="container pb-5">
-                <h2 className='pt-5'>Search Results</h2>
-                <div className="container p-0 m-0">
-                  {/* {searchResults.map(results => 
-                      <li key={results.id}>{results.name}</li>
-                    )} */}
-                  <ProductSlider data={searchResults}/>
+
+            {/* Consultation Details Section */}
+            <div className='col-md-4'>
+              <div className='container pb-5'>
+                <h2 className='pt-5'>Consultation Details</h2>
+                <div className='container p-0 m-0'>
+              
+                      {/* <p>Date: {consultationDetails.date}</p>
+                      <p>Comment: {consultationDetails.comment}</p> */}
+                       <p>Date: 19-Jan-2024</p>
+                      <p>Comment: Medicines have been updated</p>
+                    
                   
                 </div>
               </div>
-            }
-
-            <div className="container pb-5">
-              <h2 className='pt-5'>Recommended for you</h2>
-              <div className="container p-0 m-0">
-                
-                <ProductSlider data={recommended}/>
-              </div>
             </div>
 
-            
-
-            <div className="container pb-5">
-              <h2 className='pt-5'>Restaurants for you</h2>
-              <div className="container p-0 m-0">
-                {console.log(recommendedRestaurants)}
-                <ProductSlider data={recommendedRestaurants}/>
+            {/* Doctor Information Section */}
+            <div className='col-md-4'>
+              <div className='container pb-5'>
+                <h2 className='pt-5'>Doctor Information</h2>
+                <div className='container p-0 m-0'>
+                  {/* <p>Doctor ID: {doctorInfo.doctorId}</p>
+                  <p>Name: {doctorInfo.firstName} {doctorInfo.lastName}</p>
+                  <p>Hospital: {doctorInfo.hospital}</p>
+                  <p>Department: {doctorInfo.department}</p>
+                  <p>Email: {doctorInfo.email}</p> */}
+                   <p>Doctor ID: BH405</p>
+                  <p>Name: Dr. XYZ</p>
+                  <p>Hospital: BH Hospital</p>
+                  <p>Department: Oncology</p>
+                  <p>Email: xyz@bh.org</p>
+                </div>
               </div>
             </div>
+          </div>
+          {/* Medication History Section */}
+          <div className='row mt-5'>
+            <div className='col-md-12'>
+              <div className='container pb-5'>
+                <h2 className='pt-5'>Medication History</h2>
+                {/* Prescription Details */}
+                <div className='container p-0 m-0'>
+                  <h3>Prescription Details</h3>
+                  <table className='table'>
+                    <thead>
+                      <tr>
+                        {/* <th scope='col'>Serial Number</th> */}
+                        <th scope='col'>Medicine Name</th>
+                        <th scope='col'>Dosage</th>
+                        <th scope='col'>Qty</th>
+                        <th scope='col'>Days</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                          {/* <td>{prescription.serialNumber}</td>
+                          <td>{prescription.medicineName}</td>
+                          <td>{prescription.dosage}</td>
+                          <td>{prescription.qty}</td>
+                          <td>{prescription.days}</td> */}
+                          {/* <td>1</td> */}
+                          <td>Panadol</td>
+                          <td>10mg</td>
+                          <td>20</td>
+                          <td>20</td>
+                        
+                      
+                    </tbody>
+                  </table>
+                </div>
 
-            <div className="container pb-5">
-              <h2 className='pt-5'>Popular</h2>
-              <div className="container p-0 m-0">
-                <ProductSlider data={popular}/>
+                {/* Medication Calendar */}
+                <div className='container p-0 m-0'>
+                  <h3>Medication Calendar</h3>
+                  <Calendar medicationCalendar={medicationCalendar} />
+                </div>
               </div>
             </div>
-
-        </body>
-        <footer>
-            <Footer/>
-        </footer>
+          </div>
+        </div>
+      </body>
+      <footer>
+        <Footer />
+      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

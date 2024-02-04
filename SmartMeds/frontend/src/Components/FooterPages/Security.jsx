@@ -52,7 +52,7 @@ const styles = {
     margin: '0 auto',
     padding: '40px',
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: 'floralwhite',
+    backgroundColor: 'lightblue',
   },
   heading: {
     fontSize: '24px',
@@ -68,6 +68,9 @@ const styles = {
     marginTop: '20px',
     marginLeft: '30px',
     padding: '10px 20px',
+    backgroundColor: 'lightblue', // Replace 'yourColorHere' with the color you want
+    color: 'black', // Optionally set the text color
+    borderRadius: '5px', // Optionally add border radius for rounded corners
   },
 };
 
