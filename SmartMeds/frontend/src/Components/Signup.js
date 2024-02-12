@@ -279,29 +279,38 @@ export default function Signup() {
         )}
         {userType === 'doctor' && (
           <>
-            <div className='form-group'>
+            
+            <div className='form-group'  style={{ position: 'relative', left: '-27px'}}>
               <label htmlFor='department'>Department</label>
-              <input
-                type='text'
-                className='form-control'
+              <select
                 id='department'
+                className='form-control'
                 value={department}
                 onChange={(e) => setdepartment(e.target.value)}
-                placeholder='Department'
+                style={{ width: '133%' }}
                 required
-              />
+              >
+                <option value='' disabled>Select Department</option>
+                <option value='Cardiology'>Cardiology</option>
+                <option value='Orthopedics'>Orthopedics</option>
+                {/* Add more options as needed */}
+              </select>
             </div>
-            <div className='form-group'>
+            <div className='form-group'style={{ position: 'relative', left: '-27px'}}>
               <label htmlFor='hospital'>Hospital Name</label>
-              <input
-                type='text'
-                className='form-control'
+              <select
                 id='hospital'
+                className='form-control'
                 value={hospital}
                 onChange={(e) => setHospital(e.target.value)}
-                placeholder='Hospital'
+                style={{ width: '133%' }}
                 required
-              />
+              >
+                <option value='' disabled>Select Hospital</option>
+                <option value='General Hospital'>General Hospital</option>
+                <option value='Community Clinic'>Community Clinic</option>
+                {/* Add more options as needed */}
+              </select>
             </div>
           </>
         )}

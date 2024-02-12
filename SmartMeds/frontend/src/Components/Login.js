@@ -137,7 +137,11 @@ export default function Login() {
 
   return (
     <div className='formlbg'>
+      {/* <img src={require('../Assets/Icon.png')} alt="" style={{ width: '50px', top: '20px', left: '20px' }} /> */}
+
+      {/* <h2 style={{ fontFamily: "'Poppins', sans-serif", color: '#1c4ee6', marginBottom: '10', marginLeft: '700px' }}>SmartMeds Connect</h2> */}
       <form onSubmit={handleSubmit}>
+      {/* <h2 style={{ fontFamily: "'Poppins', sans-serif", color: '#1c4ee6' }}>SmartMeds Connect</h2> */}
       <h3 style={{ fontFamily: "'Poppins', sans-serif", color: '#000000' }}>Login</h3>
         <div className='form-group'>
           <label style={{ fontFamily: "'Poppins', sans-serif" }}>User Type:</label>

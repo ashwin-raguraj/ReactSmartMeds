@@ -54,7 +54,7 @@ const SearchBar = ({ onSearchResults }) => {
             <div className="search-box d-flex gap-3 align-items-center">
                 <FaSearch/>
                 <input className='search-input' type="text"
-                    placeholder='Search for restaurants or dishes...'
+                    placeholder='Search by patient name or id...'
                     onChange={(e)=>setsearch(e.target.value)}
                     ref={searchRef}
                     onKeyDown={handleKeyPress} // Add key press event listener

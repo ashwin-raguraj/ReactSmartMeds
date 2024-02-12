@@ -1,5 +1,6 @@
 import './App.css';
 import Dashboard from './Components/Dashboard';
+import DocDashboard from './Components/DocDashboard';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
@@ -43,6 +44,7 @@ function App() {
 
               <Route path="/Signup" element={<Signup />} />
               <Route path='/Dashboard' element={<Dashboard/>}/>
+              <Route path='/DocDashboard' element={<DocDashboard/>}/>
               <Route path='/Restaurant' element={<Restaurant/>}/>
 
                <Route path='/Cart' element={<Cart/>}/> 

@@ -138,9 +138,7 @@ const Restaurant = () => {
                 <h1 className='restaurant-name ps-3'>
                   {selected.restaurant}
                 </h1>
-                <div className={`indicator-circle ${getIndicatorColor(selected.indicator)} mt-1`}>
-                  <span className="status-tooltip">{getStatusText(selected.indicator)}</span>
-                </div>
+               
               </div>
 
                 <div className="row">
