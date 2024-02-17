@@ -6,7 +6,7 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    patient_id = models.CharField(max_length=7, unique=True)
+    patient_id = models.CharField(max_length=7, unique=True,primary_key=True)
     age = models.PositiveIntegerField()
     patient_image = models.ImageField(upload_to='patient_images/', blank=True, null=True)
     password = models.CharField(max_length=100)
@@ -20,7 +20,7 @@ class Doctor(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    doctor_id = models.CharField(max_length=7, unique=True)
+    doctor_id = models.CharField(max_length=7, unique=True,primary_key=True)
     department = models.CharField(max_length=50)
     hospital = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
@@ -29,6 +29,20 @@ class Doctor(models.Model):
 
     class Meta:
         db_table = 'doctors'
+
+
+class Consultation(models.Model):
+    consult_id = models.AutoField(primary_key=True)
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE,default='')
+    #     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE,default='')
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE,default='')
+    comment = models.TextField(blank=True)
+    date = models.DateField()
+    medicines = models.TextField(default=list)
+
+    class Meta:
+        ordering = ['-date']
+        db_table = 'consultation'
 # # Create your models here.
 
 # class User(models.Model):

@@ -5,7 +5,7 @@ from django.views import View
 from django.http import JsonResponse,HttpResponse
 from django.core import serializers
 from django.urls import reverse
-from .models import Patient,Doctor
+from .models import Patient,Doctor,Consultation
 import json
 from django.views.decorators.csrf import csrf_exempt
 
@@ -55,7 +55,7 @@ class SignupView(View):
                 password=data['password'], 
                 first_name=data['firstName'],
                 last_name=data['lastName'],
-                #doctor_id = data['patientId'],
+                doctor_id = data['patientId'],
                 hospital = data['hospital'],
                 department = data['department']
                 )
@@ -105,6 +105,82 @@ class LoginView(View):
             return JsonResponse({'error': 'User does not exist'})
       
 
+
+class ConsultationView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        medicines_json = json.dumps(data['medicines'])
+        consultation = Consultation.objects.create(
+                patient_id_id=data['patient_id'],
+                doctor_id_id=data['doctor_id'],
+                comment=data.get('comment', ''),
+                date=data['date'],
+                medicines=medicines_json
+                  )
+        return JsonResponse({'success': True, 'consult_id': consultation.consult_id}, status=201)
+       
+        
+    def get(self, request):
+    
+        patient_id=1
+        consultations = Consultation.objects.filter(patient_id=patient_id)
+        print(patient_id)
+        consultation_list = []
+        for consultation in consultations:
+            # medicines_list = []
+            # for medicine in consultation.medicines:
+            #     medicine_dict = {
+            #         'medname': medicine.medname,
+            #         'dosage': medicine.dosage,
+            #         'qty': medicine.qty
+            #     }
+            #     medicines_list.append(medicine_dict)
+            medicines = json.loads(consultation.medicines)
+            # print(medicines)
+            consultation_dict = {
+                'consult_id': consultation.consult_id,
+                'patient_id': consultation.patient_id_id,
+                'doctor_id': consultation.doctor_id_id,
+                'comment': consultation.comment,
+                'date': consultation.date,
+                'medicines': medicines
+            }
+            consultation_list.append(consultation_dict)
+        # print(consultation_list)
+        return JsonResponse(consultation_list, status=200,safe=False)
+    
+
+class DocInfoView(View):       
+        
+    def get(self, request):
+    
+        patient_id = 1
+        consultation = Consultation.objects.filter(patient_id=patient_id).first()
+       
+        if consultation:
+            doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
+            print(doc_id)  # Print the value of doc_id
+            
+            doctor = Doctor.objects.filter(doctor_id=doc_id).first()
+            
+            if doctor:
+                doctor_id = doctor.doctor_id
+            doctor = Doctor.objects.filter(doctor_id=doctor_id).first()
+            doctor_list=[]
+            doctor_info = [{
+                    'doctor_id': doctor.doctor_id,
+                    'firstName': doctor.first_name,
+                    'lastName': doctor.last_name,
+                    'department': doctor.department,
+                    'hospital': doctor.hospital,
+                    'email': doctor.email,
+                }]
+            # doctor_list.append(doctor_info)
+            return JsonResponse(doctor_info, status=200,safe=False)
+  
+        else:
+            return JsonResponse({'error': 'Consultation not found'}, status=404)
+    
 
 # class ResetPasswordView(View):
 #     def post(self, request):

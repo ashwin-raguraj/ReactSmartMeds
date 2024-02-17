@@ -12,24 +12,25 @@ import './Dashboard.css'
 const Dashboard = () => {
   const [patientInfo, setPatientInfo] = useState({});
   const [consultationDetails, setConsultationDetails] = useState([]);
-  const [doctorInfo, setDoctorInfo] = useState({});
+  const [doctorInfo, setDoctorInfo] = useState([]);
   const [prescriptionDetails, setPrescriptionDetails] = useState([]);
   const [medicationCalendar, setMedicationCalendar] = useState([]);
 
   const fetchDashboardData = async () => {
     try {
-      const patientResponse = await axios.get('http://localhost:3030/patient-info');
-      if (patientResponse && patientResponse.data) {
-        setPatientInfo(patientResponse.data);
-      }
+      // const patientResponse = await axios.get('http://localhost:3030/patient-info');
+      // if (patientResponse && patientResponse.data) {
+      //   setPatientInfo(patientResponse.data);
+      // }
 
-      const consultationResponse = await axios.get('http://localhost:3030/consultation-details');
+      const consultationResponse = await axios.get('http://127.0.0.1:8000/consultations/');
       if (consultationResponse && consultationResponse.data) {
         setConsultationDetails(consultationResponse.data);
       }
 
-      const doctorResponse = await axios.get('http://localhost:3030/doctor-info');
+      const doctorResponse = await axios.get('http://localhost:3030/doctorinfo/');
       if (doctorResponse && doctorResponse.data) {
+        // console.log(doctorResponse.data);
         setDoctorInfo(doctorResponse.data);
       }
        // Fetch Prescription Details
@@ -87,12 +88,29 @@ const Dashboard = () => {
             <div className='col-md-4'>
               <div className='container pb-5'>
                 <h2 className='pt-5'>Consultation Details</h2>
+                
                 <div className='container p-0 m-0'>
+                {consultationDetails.map((consultation, index) => (
+                          <div key={index}>
+                            <p>Date: {consultation.date}</p>
+                            <p>Comment: {consultation.comment}</p>
+                            {/* Iterate over each medicine within the consultation */}
+                            <ul>
+                              {/* {consultation.medicines.map((medicine, medIndex) => (
+                                <li key={medIndex}>
+                                  <p>Medicine Name: {medicine.medname}</p>
+                                  <p>Dosage: {medicine.dosage}</p>
+                                  <p>Quantity: {medicine.qty}</p>
+                                </li>
+                              ))} */}
+                            </ul>
+                          </div>
+                        ))}
               
-                      {/* <p>Date: {consultationDetails.date}</p>
+                      {/* <p>Date:  {consultationDetails.date}</p>
                       <p>Comment: {consultationDetails.comment}</p> */}
-                       <p>Date: 19-Jan-2024</p>
-                      <p>Comment: Medicines have been updated</p>
+                       {/* <p>Date: 19-Jan-2024</p>
+                      <p>Comment: Medicines have been updated</p> */}
                     
                   
                 </div>
@@ -104,16 +122,31 @@ const Dashboard = () => {
               <div className='container pb-5'>
                 <h2 className='pt-5'>Doctor Information</h2>
                 <div className='container p-0 m-0'>
-                  {/* <p>Doctor ID: {doctorInfo.doctorId}</p>
+                {doctorInfo.map((doctor, index) => (
+                <div key={index} className='col-md-4'>
+                  <div className='container pb-5'>
+                    <h2 className='pt-5'>Doctor Information</h2>
+                    <div className='container p-0 m-0'>
+                      <p>Doctor ID: {doctor.doctor_id}</p>
+                      <p>Name: {doctor.firstName} {doctor.lastName}</p>
+                      <p>Hospital: {doctor.hospital}</p>
+                      <p>Department: {doctor.department}</p>
+                      <p>Email: {doctor.email}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+                            
+                  {/* <p>Doctor ID: {doctorInfo.doctor_id}</p>
                   <p>Name: {doctorInfo.firstName} {doctorInfo.lastName}</p>
                   <p>Hospital: {doctorInfo.hospital}</p>
                   <p>Department: {doctorInfo.department}</p>
                   <p>Email: {doctorInfo.email}</p> */}
-                   <p>Doctor ID: BH405</p>
+                   {/* <p>Doctor ID: BH405</p>
                   <p>Name: Dr. XYZ</p>
                   <p>Hospital: BH Hospital</p>
                   <p>Department: Oncology</p>
-                  <p>Email: xyz@bh.org</p>
+                  <p>Email: xyz@bh.org</p> */}
                 </div>
               </div>
             </div>

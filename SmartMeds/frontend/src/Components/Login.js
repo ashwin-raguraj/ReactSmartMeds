@@ -102,7 +102,7 @@ export default function Login() {
           if (userType === 'patient') {
             window.location.href = '/Dashboard'; // Redirect to Dashboard1 for patients
           } else if (userType === 'doctor') {
-            window.location.href = '/Dashboard'; // Redirect to Dashboard2 for doctors
+            window.location.href = '/DocDashboard'; // Redirect to Dashboard2 for doctors
           }
         } else {
           alert('Invalid userID, password, or user type.');

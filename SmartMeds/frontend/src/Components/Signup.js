@@ -279,7 +279,18 @@ export default function Signup() {
         )}
         {userType === 'doctor' && (
           <>
-            
+            <div className='form-group'>
+              <label htmlFor='patientId'>Doctor ID</label>
+              <input
+                type='text'
+                className='form-control'
+                id='doctorId'
+                value={doctorId}
+                onChange={(e) => setdoctorId(e.target.value)}
+                placeholder='Doctor ID'
+                required
+              />
+            </div>
             <div className='form-group'  style={{ position: 'relative', left: '-27px'}}>
               <label htmlFor='department'>Department</label>
               <select
