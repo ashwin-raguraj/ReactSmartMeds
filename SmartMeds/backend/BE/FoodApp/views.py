@@ -181,7 +181,19 @@ class DocInfoView(View):
         else:
             return JsonResponse({'error': 'Consultation not found'}, status=404)
     
-
+class PatientInfoView(View):       
+        
+    def get(self, request):
+        patient_id = 1
+        patient = Patient.objects.filter(patient_id=patient_id).first()  # Assuming you want to return info for the first patient
+        data = {
+            'patient_id': patient.patient_id,
+            'firstName': patient.first_name,
+            'lastName': patient.last_name,
+            'age': patient.age,
+            'email': patient.email,
+        }
+        return JsonResponse(data)
 # class ResetPasswordView(View):
 #     def post(self, request):
 #         # Deserialize JSON data from request body

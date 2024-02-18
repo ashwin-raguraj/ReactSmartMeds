@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [doctorInfo, setDoctorInfo] = useState([]);
   const [prescriptionDetails, setPrescriptionDetails] = useState([]);
   const [medicationCalendar, setMedicationCalendar] = useState([]);
+  const [selectedConsultation, setSelectedConsultation] = useState(null);
 
   const fetchDashboardData = async () => {
     try {
@@ -24,15 +25,20 @@ const Dashboard = () => {
       // }
 
       const consultationResponse = await axios.get('http://127.0.0.1:8000/consultations/');
-      if (consultationResponse && consultationResponse.data) {
+       if (consultationResponse && consultationResponse.data) {
         setConsultationDetails(consultationResponse.data);
       }
 
-      const doctorResponse = await axios.get('http://localhost:3030/doctorinfo/');
+      const doctorResponse = await axios.get('http://127.0.0.1:8000/docinfo/');
       if (doctorResponse && doctorResponse.data) {
         // console.log(doctorResponse.data);
+        console.log(doctorResponse.data)
         setDoctorInfo(doctorResponse.data);
       }
+
+      const patientResponse = await axios.get('http://127.0.0.1:8000/patientinfo/');
+      if(patientResponse && patientResponse.data)
+      setPatientInfo(patientResponse.data);
        // Fetch Prescription Details
        const prescriptionResponse = await axios.get('http://localhost:3030/prescription-details');
        if (prescriptionResponse && prescriptionResponse.data) {
@@ -53,6 +59,13 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
+  const handleConsultationSelect = (e) => {
+    const selectedId = parseInt(e.target.value);
+    const selectedConsultation = consultationDetails.find(
+      (consultation) => consultation.consult_id === selectedId
+    );
+    setSelectedConsultation(selectedConsultation);
+  };
   return (
     
     <div className='dashboard'>
@@ -67,90 +80,92 @@ const Dashboard = () => {
             </div> */}
         <div className='container'>
           <div className='row'>
-            {/* Patient Information Section */}
-            <div className='col-md-4'>
-              <div className='container pb-5'>
-                <h2 className='pt-5'>Patient Information</h2>
-                <div className='container p-0 m-0'>
-                  {/* <p>Patient ID: {patientInfo.patientId}</p>
-                  <p>Name: {patientInfo.firstName} {patientInfo.lastName}</p>
-                  <p>Age: {patientInfo.age}</p>
-                  <p>Email: {patientInfo.email}</p> */}
-                  <p>Patient ID: 101</p>
-                  <p>Name: ABCD EFG</p>
-                  <p>Age: 56</p>
-                  <p>Email: abcd@gmail.com</p>
-                </div>
-              </div>
-            </div>
+          <div className='col-md-4'>
+  <div className='container pb-5'>
+    <h2 className='pt-5'>Patient Information</h2>
+    <div className='container p-0 m-0'>
+      {/* Display patient information */}
+      <p>Patient ID: {patientInfo.patient_id}</p>
+      <p>Name: {patientInfo.firstName} {patientInfo.lastName}</p>
+      <p>Age: {patientInfo.age}</p>
+      <p>Email: {patientInfo.email}</p>
+    </div>
+  </div>
+</div>
 
             {/* Consultation Details Section */}
             <div className='col-md-4'>
               <div className='container pb-5'>
-                <h2 className='pt-5'>Consultation Details</h2>
-                
+                <h2 className='pt-5'>Last Consultation Details</h2>
                 <div className='container p-0 m-0'>
-                {consultationDetails.map((consultation, index) => (
-                          <div key={index}>
-                            <p>Date: {consultation.date}</p>
-                            <p>Comment: {consultation.comment}</p>
-                            {/* Iterate over each medicine within the consultation */}
-                            <ul>
-                              {/* {consultation.medicines.map((medicine, medIndex) => (
-                                <li key={medIndex}>
-                                  <p>Medicine Name: {medicine.medname}</p>
-                                  <p>Dosage: {medicine.dosage}</p>
-                                  <p>Quantity: {medicine.qty}</p>
-                                </li>
-                              ))} */}
-                            </ul>
-                          </div>
-                        ))}
-              
-                      {/* <p>Date:  {consultationDetails.date}</p>
-                      <p>Comment: {consultationDetails.comment}</p> */}
-                       {/* <p>Date: 19-Jan-2024</p>
-                      <p>Comment: Medicines have been updated</p> */}
-                    
-                  
+                  {consultationDetails.length > 0 && (
+                    <div>
+                      <p>Date: {consultationDetails[consultationDetails.length - 1].date}</p>
+                      <p>Comment: {consultationDetails[consultationDetails.length - 1].comment}</p>
+                      {/* Iterate over each medicine within the last consultation */}
+                      
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
             {/* Doctor Information Section */}
             <div className='col-md-4'>
-              <div className='container pb-5'>
-                <h2 className='pt-5'>Doctor Information</h2>
-                <div className='container p-0 m-0'>
-                {doctorInfo.map((doctor, index) => (
-                <div key={index} className='col-md-4'>
-                  <div className='container pb-5'>
-                    <h2 className='pt-5'>Doctor Information</h2>
-                    <div className='container p-0 m-0'>
-                      <p>Doctor ID: {doctor.doctor_id}</p>
-                      <p>Name: {doctor.firstName} {doctor.lastName}</p>
-                      <p>Hospital: {doctor.hospital}</p>
-                      <p>Department: {doctor.department}</p>
-                      <p>Email: {doctor.email}</p>
-                    </div>
+  <div className='container pb-5'>
+    <h2 className='pt-5'>Your Doctor </h2>
+    <div className='container p-0 m-0'>
+      {doctorInfo.map((doctor, index) => (
+        <div key={index}>
+          <p>Doctor ID: {doctor.doctor_id}</p>
+          <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
+          <p>Hospital: {doctor.hospital}</p>
+          <p>Department: {doctor.department}</p>
+          <p>Email: {doctor.email}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+          </div>
+              {/* Consultation Details Section */}
+            <div className='col-md-4'>
+              <h2 className='pt-5'>Previous Consultations</h2>
+              <div className='container p-0 m-0'>
+                <select className='form-select' onChange={handleConsultationSelect}>
+                  <option value=''>Select Consultation</option>
+                  {consultationDetails.map((consultation) => (
+                    <option key={consultation.consult_id} value={consultation.consult_id}>
+                      Consultation ID: {consultation.consult_id} - Date: {consultation.date}
+                    </option>
+                  ))}
+                </select>
+                {selectedConsultation && (
+                  <div>
+                    <p>Date: {selectedConsultation.date}</p>
+                    {doctorInfo.map((doctor, index) => (
+                      <div key={index}>
+                        <p>Doctor ID: {doctor.doctor_id}</p>
+                        <p>Doctor: Dr. {doctor.firstName} {doctor.lastName}</p>
+                        
+                      </div>
+                    ))}
+                    <p>Comment: {selectedConsultation.comment}</p>
+                    <ul>
+                      {selectedConsultation.medicines.map((medicine, index) => (
+                        <li key={index}>
+                          <p>Medicine Name: {medicine.medname}</p>
+                          <p>Dosage: {medicine.dosage}</p>
+                          <p>Quantity: {medicine.qty}</p>
+                        </li>
+                      ))}
+       
+                    </ul>
                   </div>
-                </div>
-              ))}
-                            
-                  {/* <p>Doctor ID: {doctorInfo.doctor_id}</p>
-                  <p>Name: {doctorInfo.firstName} {doctorInfo.lastName}</p>
-                  <p>Hospital: {doctorInfo.hospital}</p>
-                  <p>Department: {doctorInfo.department}</p>
-                  <p>Email: {doctorInfo.email}</p> */}
-                   {/* <p>Doctor ID: BH405</p>
-                  <p>Name: Dr. XYZ</p>
-                  <p>Hospital: BH Hospital</p>
-                  <p>Department: Oncology</p>
-                  <p>Email: xyz@bh.org</p> */}
-                </div>
+                )}
               </div>
             </div>
-          </div>
           {/* Medication History Section */}
           <div className='row mt-5'>
             <div className='col-md-12'>
@@ -158,34 +173,28 @@ const Dashboard = () => {
                 <h2 className='pt-5'>Medication History</h2>
                 {/* Prescription Details */}
                 <div className='container p-0 m-0'>
-                  <h3>Prescription Details</h3>
-                  <table className='table'>
-                    <thead>
-                      <tr>
-                        {/* <th scope='col'>Serial Number</th> */}
-                        <th scope='col'>Medicine Name</th>
-                        <th scope='col'>Dosage</th>
-                        <th scope='col'>Qty</th>
-                        <th scope='col'>Days</th>
+                <h3>Current Prescription</h3>
+                <table className='table'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>Medicine Name</th>
+                      <th scope='col'>Dosage</th>
+                      <th scope='col'>Qty</th>
+                      {/* Add any additional columns you want to display */}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {consultationDetails.length > 0 && consultationDetails[consultationDetails.length - 1].medicines.map((medicine, index) => (
+                      <tr key={index}>
+                        <td>{medicine.medname}</td>
+                        <td>{medicine.dosage}</td>
+                        <td>{medicine.qty}</td>
+                        {/* Add additional cells for other details if needed */}
                       </tr>
-                    </thead>
-                    <tbody>
-                      
-                          {/* <td>{prescription.serialNumber}</td>
-                          <td>{prescription.medicineName}</td>
-                          <td>{prescription.dosage}</td>
-                          <td>{prescription.qty}</td>
-                          <td>{prescription.days}</td> */}
-                          {/* <td>1</td> */}
-                          <td>Panadol</td>
-                          <td>10mg</td>
-                          <td>20</td>
-                          <td>20</td>
-                        
-                      
-                    </tbody>
-                  </table>
-                </div>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
                 {/* Medication Calendar */}
                 <div className='container p-0 m-0'>
