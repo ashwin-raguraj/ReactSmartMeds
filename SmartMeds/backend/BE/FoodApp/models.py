@@ -43,6 +43,37 @@ class Consultation(models.Model):
     class Meta:
         ordering = ['-date']
         db_table = 'consultation'
+
+class PatientLogin(models.Model):
+    
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE,default='')
+    class Meta:
+       
+        db_table = 'patientLogin'
+
+class DoctorLogin(models.Model):
+    
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE,default='')
+    class Meta:
+       
+        db_table = 'doctorLogin'
+
+
+class ScheduledTime(models.Model):
+    scheduled_time = models.CharField(max_length=5)  # Store time in 'HH:MM' format
+
+    def __str__(self):
+        return self.scheduled_time
+    
+from django.db import models
+
+class Time(models.Model):
+    time = models.TimeField()
+
+    def __str__(self):
+        return self.time.strftime('%H:%M')
+    
+
 # # Create your models here.
 
 # class User(models.Model):

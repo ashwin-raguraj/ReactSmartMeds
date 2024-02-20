@@ -5,7 +5,7 @@ from django.views import View
 from django.http import JsonResponse,HttpResponse
 from django.core import serializers
 from django.urls import reverse
-from .models import Patient,Doctor,Consultation
+from .models import Patient,Doctor,Consultation,PatientLogin,DoctorLogin
 import json
 from django.views.decorators.csrf import csrf_exempt
 
@@ -86,19 +86,21 @@ class LoginView(View):
            
            if data['userType'] == 'patient':
                 patient_id= existing_user.patient_id
-            
+                #storing user id for session 
+                patient=PatientLogin(patient_id_id=patient_id)
+                patient.save()
+                
+    #Cart.objects.all().delete()
            #storing user id for session 
             #request.session['user_id'] = user_id 
             
-                print(patient_id)
+                #print(patient_id)
                 return JsonResponse({'success':True})
            else:
                 doctor_id= existing_user.doctor_id
             
-           #storing user id for session 
-            #request.session['user_id'] = user_id 
-            
-                #print(doctor_id)
+                doctor=DoctorLogin(doctor_id_id=doctor_id)
+                doctor.save()
                 return JsonResponse({'success':True})
             #return JsonResponse({'success':True})
         else:
@@ -121,10 +123,11 @@ class ConsultationView(View):
        
         
     def get(self, request):
-    
-        patient_id=1
-        consultations = Consultation.objects.filter(patient_id=patient_id)
+        patient_id = PatientLogin.objects.first().patient_id
+
         print(patient_id)
+        consultations = Consultation.objects.filter(patient_id=patient_id)
+        #print(patient_id)
         consultation_list = []
         for consultation in consultations:
             # medicines_list = []
@@ -154,12 +157,12 @@ class DocInfoView(View):
         
     def get(self, request):
     
-        patient_id = 1
+        patient_id = PatientLogin.objects.first().patient_id
         consultation = Consultation.objects.filter(patient_id=patient_id).first()
        
         if consultation:
             doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
-            print(doc_id)  # Print the value of doc_id
+            #print(doc_id)  # Print the value of doc_id
             
             doctor = Doctor.objects.filter(doctor_id=doc_id).first()
             
@@ -184,8 +187,9 @@ class DocInfoView(View):
 class PatientInfoView(View):       
         
     def get(self, request):
-        patient_id = 1
-        patient = Patient.objects.filter(patient_id=patient_id).first()  # Assuming you want to return info for the first patient
+        patient_id = PatientLogin.objects.first().patient_id
+        print(patient_id)
+        patient = Patient.objects.get(patient_id=patient_id.patient_id) # Assuming you want to return info for the first patient
         data = {
             'patient_id': patient.patient_id,
             'firstName': patient.first_name,
@@ -194,7 +198,42 @@ class PatientInfoView(View):
             'email': patient.email,
         }
         return JsonResponse(data)
-# class ResetPasswordView(View):
+    
+from django.utils import timezone
+from .models import Time
+import time
+
+
+
+def get_times(request=None):
+    while True:
+        current_time = timezone.now().time()
+        print(current_time)
+        times = Time.objects.filter(time__lte=current_time)
+        
+        # List to store the times that need to be cleared
+        times_to_clear = []
+
+        if times.exists():
+            print("Notification: It's time for alert!")
+            # You can trigger any other notification mechanism here
+            
+            # Add times to the list to be cleared
+            times_to_clear.extend(times)
+        else:
+            print("No")
+        # Delete the times that need to be cleared
+        for time_obj in times_to_clear:
+            time_obj.delete()
+
+        # Fetch the remaining times (if any) after deletion
+        remaining_times = Time.objects.all()
+
+        # Wait for 60 seconds before checking again
+        time.sleep(30)
+        get_times()
+    # This part of the code will never be reached, as the loop runs indefinitely
+        return JsonResponse({"status": "success"})
 #     def post(self, request):
 #         # Deserialize JSON data from request body
 #         data = json.loads(request.body)

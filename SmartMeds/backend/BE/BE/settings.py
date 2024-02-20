@@ -157,3 +157,9 @@ CORS_ALLOWED_ORIGINS = [
     # Add any other allowed origins here
 ]
 
+CELERY_BEAT_SCHEDULE = {
+    'check-time-matches-every-minute': {
+        'task': 'FoodApp.tasks.check_time_matches',
+        'schedule': 60.0,  # Run every minute (60 seconds)
+    },
+}
