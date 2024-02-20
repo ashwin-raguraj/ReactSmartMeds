@@ -14,7 +14,7 @@ import SearchBar from './SearchBar'
 const DocDashboard = () => {
   const [patientInfo, setPatientInfo] = useState({});
   const [consultationDetails, setConsultationDetails] = useState([]);
-  const [doctorInfo, setDoctorInfo] = useState({});
+  const [doctorInfo, setDoctorInfo] = useState([]);
   const [prescriptionDetails, setPrescriptionDetails] = useState([]);
   const [medicationCalendar, setMedicationCalendar] = useState([]);
   const [recommended, setrecommended] = useState([]);
@@ -28,6 +28,12 @@ const DocDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
+
+      const doctorResponse = await axios.get('http://127.0.0.1:8000/docinfo/');
+      if (doctorResponse && doctorResponse.data) {
+        setDoctorInfo(doctorResponse.data);
+      }
+      
       const patientResponse = await axios.get('http://localhost:3030/patient-info');
       if (patientResponse && patientResponse.data) {
         setPatientInfo(patientResponse.data);
@@ -38,10 +44,7 @@ const DocDashboard = () => {
         setConsultationDetails(consultationResponse.data);
       }
 
-      const doctorResponse = await axios.get('http://localhost:3030/doctor-info');
-      if (doctorResponse && doctorResponse.data) {
-        setDoctorInfo(doctorResponse.data);
-      }
+      
        // Fetch Prescription Details
        const prescriptionResponse = await axios.get('http://localhost:3030/prescription-details');
        if (prescriptionResponse && prescriptionResponse.data) {
@@ -71,7 +74,14 @@ const DocDashboard = () => {
       <body className='dashboard-body'>
       <div className="bg-img position-relative d-flex justify-content-center">
               <div className="fg-content d-flex flex-column justify-content-center align-items-center gap-5 ">
-                <h1 className>Dr </h1> 
+              {doctorInfo.map((doctor, index) => (
+        <div key={index}>
+          
+          <h1>Dr. {doctor.firstName} {doctor.lastName}</h1>
+          
+        </div>
+      ))}
+                
                 <SearchBar onSearchResults={handleSearchResults} />
               </div>
             </div>
@@ -105,11 +115,15 @@ const DocDashboard = () => {
                   <p>Hospital: {doctorInfo.hospital}</p>
                   <p>Department: {doctorInfo.department}</p>
                   <p>Email: {doctorInfo.email}</p> */}
-                   <p>Doctor ID: BH405</p>
-                  <p>Name: Dr. XYZ</p>
-                  <p>Hospital: BH Hospital</p>
-                  <p>Department: Oncology</p>
-                  <p>Email: xyz@bh.org</p>
+                  {doctorInfo.map((doctor, index) => (
+        <div key={index}>
+          <p>Doctor ID: {doctor.doctor_id}</p>
+          <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
+          <p>Hospital: {doctor.hospital}</p>
+          <p>Department: {doctor.department}</p>
+          <p>Email: {doctor.email}</p>
+        </div>
+      ))}
                 </div>
               </div>
             </div>
