@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 
-from .Recommendation.Order.collect_pkl_and_run_pkl import Get_Recommendations
+# from .Recommendation.Order.collect_pkl_and_run_pkl import Get_Recommendations
 
 
 class SignupView(View):

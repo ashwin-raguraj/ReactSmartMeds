@@ -4,6 +4,7 @@ import Footer from './Footer';
 import axios from 'axios';
 import Calendar from './Calendar';
 import './Dashboard.css'
+
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
@@ -170,7 +171,8 @@ const Dashboard = () => {
           <div className='row mt-5'>
             <div className='col-md-12'>
               <div className='container pb-5'>
-                <h2 className='pt-5'>Medication History</h2>
+                {/* <h2 className='pt-5'>Medication History</h2> */}
+                
                 {/* Prescription Details */}
                 <div className='container p-0 m-0'>
                 <h3>Current Prescription</h3>
@@ -197,10 +199,10 @@ const Dashboard = () => {
               </div>
 
                 {/* Medication Calendar */}
-                <div className='container p-0 m-0'>
+                {/* <div className='container p-0 m-0'>
                   <h3>Medication Calendar</h3>
                   <Calendar medicationCalendar={medicationCalendar} />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,9 +1,30 @@
-import React from 'react'
+import React ,{ useEffect }from 'react'
 import Navbar from './Navbar'
 import './Home.css'
 import Footer from './Footer'
 import { Link } from 'react-router-dom'
+
+
+
 const Home = () => {
+    useEffect(() => {
+        const fadeImagesInOnScroll = () => {
+          const images = document.querySelectorAll('.fade-in');
+          images.forEach((image) => {
+            const imageTop = image.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            if (imageTop < windowHeight) {
+              image.classList.add('visible');
+            }
+          });
+        };
+    
+        window.addEventListener('scroll', fadeImagesInOnScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', fadeImagesInOnScroll);
+        };
+      }, []);
   return (
     <div>
         <nav>

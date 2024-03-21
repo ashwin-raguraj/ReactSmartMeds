@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import { ImMenu3 } from 'react-icons/im';
-const Navbar2 = () => {
+const Navbar3 = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -17,7 +17,7 @@ const Navbar2 = () => {
         </div> 
         <ul>
             <li className='nav-item'>
-                <Link to='/Dashboard'>Dashboard</Link>
+                <Link to='/DocDashboard'>Dashboard</Link>
             </li>
             {/* <li className='nav-item'>
                 <Link to='/Order'>Orders</Link>
@@ -46,4 +46,4 @@ const Navbar2 = () => {
   )
 }
 
-export default Navbar2
+export default Navbar3
