@@ -1,11 +1,20 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
+import axios from 'axios';
 import { ImMenu3 } from 'react-icons/im';
 const Navbar3 = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+    const handleSignOut=async ()=>{
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/doctor/signout');//API for log out
+            
+            console.log(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+      };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -37,7 +46,7 @@ const Navbar3 = () => {
                     <ul className="dropdown-menu d-flex flex-column">
                     <li><Link to='/About'>About us</Link></li>
                     {/* <li><Link to='/Complaint'>Complaint</Link></li> */}
-                    <li><Link to=''>Sign out</Link></li>
+                    <li><Link to='/' onClick={handleSignOut}>Sign out</Link></li>
                     </ul>
                 )}
             </li>

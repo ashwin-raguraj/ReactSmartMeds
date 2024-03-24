@@ -9,8 +9,9 @@ from .models import Patient,Doctor,Consultation,PatientLogin,DoctorLogin
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-
-
+from .Sequence.alert import alert
+from .Sequence.script import sequence
+from .FaceRecognition.FaceAuth.face_html_try import FaceAuthFunction
 
 # from .Recommendation.Order.collect_pkl_and_run_pkl import Get_Recommendations
 
@@ -64,7 +65,22 @@ class SignupView(View):
 
 
 
-
+class PatientSignoutView(View):
+    def get(self, request):
+        # Perform signout logic
+        
+        PatientLogin.objects.all().delete()
+        # Return a JSON response or any other response if needed
+        return JsonResponse({'message': 'Signout successful'})
+    
+class DoctorSignoutView(View):
+    def get(self, request):
+        # Perform signout logic
+        
+        DoctorLogin.objects.all().delete()
+        # Return a JSON response or any other response if needed
+        return JsonResponse({'message': 'Signout successful'})
+    
 
 class LoginView(View):
     @csrf_exempt
@@ -216,6 +232,14 @@ def get_times(request=None):
 
         if times.exists():
             print("Notification: It's time for alert!")
+            alert()
+            a=2
+            b=3
+            file_path = "C:/Users/ashwi/Desktop/Ashwin/Ashwin.jpg"
+            FaceAuthFunction(file_path)
+            sequence(a,b)
+
+            
             # You can trigger any other notification mechanism here
             
             # Add times to the list to be cleared

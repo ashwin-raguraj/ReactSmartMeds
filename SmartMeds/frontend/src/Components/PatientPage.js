@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar2 from './Navbar2';
+import Navbar3 from './Navbar3';
 import Footer from './Footer';
 import axios from 'axios';
 import './PatientPage.css'; // Import CSS file for patient page styling
@@ -100,7 +100,7 @@ const PatientPage = () => {
 
   return (
     <div className="patient-page">
-      <Navbar2 />
+      <Navbar3 />
       <div className="patient-content">
         <h1>Patient Information</h1>
         <div className="patient-details">

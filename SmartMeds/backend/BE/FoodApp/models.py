@@ -34,11 +34,16 @@ class Doctor(models.Model):
 class Consultation(models.Model):
     consult_id = models.AutoField(primary_key=True)
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE,default='')
-    #     restaurant_id = models.ForeignKey(Restaurant, on_delete=models.CASCADE,default='')
+   
     doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE,default='')
     comment = models.TextField(blank=True)
     date = models.DateField()
     medicines = models.TextField(default=list)
+    #time = models.TimeField()
+
+    # def __str__(self):
+    #     return self.time.strftime('%H:%M')
+
 
     class Meta:
         ordering = ['-date']
