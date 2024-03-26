@@ -39,10 +39,10 @@ class Consultation(models.Model):
     comment = models.TextField(blank=True)
     date = models.DateField()
     medicines = models.TextField(default=list)
-    #time = models.TimeField()
-
+    # time = models.TimeField()
+    
     # def __str__(self):
-    #     return self.time.strftime('%H:%M')
+    #      return self.time.strftime('%H:%M')
 
 
     class Meta:

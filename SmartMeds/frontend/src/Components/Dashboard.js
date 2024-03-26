@@ -103,11 +103,10 @@ const Dashboard = () => {
                 <div className='container p-0 m-0'>
                   {consultationDetails.length > 0 && (
                     <div>
-                      <p>Date: {consultationDetails[consultationDetails.length - 1].date}</p>
-                      <p>Comment: {consultationDetails[consultationDetails.length - 1].comment}</p>
-                      {/* Iterate over each medicine within the last consultation */}
-                      
-                    </div>
+                    <p>Date: {consultationDetails[0].date}</p>
+                    <p>Consultation ID: {consultationDetails[0].consult_id}</p>
+                    <p>Comment: {consultationDetails[0].comment}</p>
+                  </div>
                   )}
                 </div>
               </div>
@@ -161,6 +160,7 @@ const Dashboard = () => {
                           <p>Medicine Name: {medicine.medname}</p>
                           <p>Dosage: {medicine.dosage}</p>
                           <p>Quantity: {medicine.qty}</p>
+                          
                         </li>
                       ))}
        
@@ -184,19 +184,24 @@ const Dashboard = () => {
                       <th scope='col'>Medicine Name</th>
                       <th scope='col'>Dosage</th>
                       <th scope='col'>Qty</th>
+                      <th scope='col'>Days</th>
+                      <th scope='col'>Time</th>
+
                       {/* Add any additional columns you want to display */}
                     </tr>
                   </thead>
                   <tbody>
-                    {consultationDetails.length > 0 && consultationDetails[consultationDetails.length - 1].medicines.map((medicine, index) => (
-                      <tr key={index}>
-                        <td>{medicine.medname}</td>
-                        <td>{medicine.dosage}</td>
-                        <td>{medicine.qty}</td>
-                        {/* Add additional cells for other details if needed */}
-                      </tr>
-                    ))}
-                  </tbody>
+                      {consultationDetails.length > 0 && consultationDetails[0].medicines.map((medicine, index) => (
+                        <tr key={index}>
+                          <td>{medicine.medname}</td>
+                          <td>{medicine.dosage}</td>
+                          <td>{medicine.qty}</td>
+                          <td>{medicine.days}</td>
+                          <td>{medicine.time}</td>
+                          {/* Add additional cells for other details if needed */}
+                        </tr>
+                      ))}
+                    </tbody>
                 </table>
               </div>
 

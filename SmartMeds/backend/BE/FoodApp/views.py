@@ -190,7 +190,7 @@ class DocInfoView(View):
             doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
             #print(doc_id)  # Print the value of doc_id
             
-            doctor = Doctor.objects.filter(doctor_id=doc_id).first()
+            doctor = Doctor.objects.filter(doctor_id=doc_id).last()
             
             if doctor:
                 doctor_id = doctor.doctor_id
@@ -285,6 +285,8 @@ def get_times(request=None):
     while True:
         current_time = timezone.now().time()
         print(current_time)
+
+       
         times = Time.objects.filter(time__lte=current_time)
         
         # List to store the times that need to be cleared
