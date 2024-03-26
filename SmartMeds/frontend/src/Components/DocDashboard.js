@@ -7,8 +7,8 @@ import Calendar from './Calendar';
 import './Dashboard.css'
 import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
