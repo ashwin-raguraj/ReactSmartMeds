@@ -23,7 +23,11 @@ const Dashboard = () => {
       // const patientResponse = await axios.get('http://localhost:3030/patient-info');
       // if (patientResponse && patientResponse.data) {
       //   setPatientInfo(patientResponse.data);
+  
       // }
+      const patientResponse = await axios.get('http://127.0.0.1:8000/patientinfo/');
+      if(patientResponse && patientResponse.data)
+      setPatientInfo(patientResponse.data);
 
       const consultationResponse = await axios.get('http://127.0.0.1:8000/consultations/');
        if (consultationResponse && consultationResponse.data) {
@@ -37,9 +41,7 @@ const Dashboard = () => {
         setDoctorInfo(doctorResponse.data);
       }
 
-      const patientResponse = await axios.get('http://127.0.0.1:8000/patientinfo/');
-      if(patientResponse && patientResponse.data)
-      setPatientInfo(patientResponse.data);
+     
        // Fetch Prescription Details
        const prescriptionResponse = await axios.get('http://localhost:3030/prescription-details');
        if (prescriptionResponse && prescriptionResponse.data) {

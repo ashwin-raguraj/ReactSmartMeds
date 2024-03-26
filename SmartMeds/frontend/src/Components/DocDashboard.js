@@ -111,12 +111,16 @@ const DocDashboard = () => {
   const fetchDashboardData = async () => {
     try {
 
-      const doctorResponse = await axios.get('http://127.0.0.1:8000/docinfo/');
+      // const doctorResponse = await axios.get('http://127.0.0.1:8000/docinfo/');
+      // if (doctorResponse && doctorResponse.data) {
+      //   setDoctorInfo(doctorResponse.data);
+      // }
+      const doctorResponse = await axios.get('http://127.0.0.1:8000/docdash/');
       if (doctorResponse && doctorResponse.data) {
         setDoctorInfo(doctorResponse.data);
       }
       
-      const patientResponse = await axios.get('http://localhost:3030/patient-info');
+      const patientResponse = await axios.get('http://localhost:3030/consultation-details');
       if (patientResponse && patientResponse.data) {
         setPatientInfo(patientResponse.data);
       }

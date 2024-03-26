@@ -21,47 +21,57 @@ class SignupView(View):
     def post(self, request):
         # Deserialize JSON data from request body
         data = json.loads(request.body)
-        existing_user = None
+        existing_patient = None
+        existing_doctor= None
         print('Received data:', data)
 
-        existing_user = Patient.objects.filter(email=data.get('email')).first()
+        if data['userType'] == 'patient':
+            existing_patient = Patient.objects.filter(email=data['email']).first()
+            existing_patient = Patient.objects.filter(patient_id=data['patientId']).first()
+            print(existing_patient)
         # Check if the user already exists in the database
+        if data['userType'] == 'doctor':
+            existing_doctor = Doctor.objects.filter(email=data['email']).first()
+            print(existing_doctor)
+        
         
         # existing_user = User.objects.filter(email=data[0]['email']).first()
-        if existing_user is not None:
+        if existing_patient or existing_doctor is not None:
+            print(existing_patient)
             return JsonResponse({'error': 'User with this email already exists'})
         else:
+            if data['userType'] == 'doctor':
+                
+                    doctor = Doctor(
+                    email=data['email'], 
+                    password=data['password'], 
+                    first_name=data['firstName'],
+                    last_name=data['lastName'],
+                    doctor_id = data['patientId'],
+                    hospital = data['hospital'],
+                    department = data['department']
+                    )
+                    doctor.save()
             if data['userType'] == 'patient':
-            
-                patient = Patient(
-                email=data['email'], 
-                password=data['password'], 
-                first_name=data['firstName'],
-                last_name=data['lastName'],
-                patient_id = data['patientId'],
-                age = data['age'],
-                #patient_image = data['patientImage']
-                )
-                # if 'patient_image' in data and data['patient_image']:
-                #     image_data = data['patient_image'].split(';base64,')
-                #     if len(image_data) == 2:
-                #         image_content = ContentFile(base64.b64decode(image_data[1]), name='patient_image.jpg')
-                #         patient.patient_image.save('patient_image.jpg', image_content)
-
-                patient.save()
-            else:
-            
-                doctor = Doctor(
-                email=data['email'], 
-                password=data['password'], 
-                first_name=data['firstName'],
-                last_name=data['lastName'],
-                doctor_id = data['patientId'],
-                hospital = data['hospital'],
-                department = data['department']
-                )
-                doctor.save()
-        return JsonResponse({'success': True})
+                
+                    patient = Patient(
+                    email=data['email'], 
+                    password=data['password'], 
+                    first_name=data['firstName'],
+                    last_name=data['lastName'],
+                    patient_id = data['patientId'],
+                    age = data['age'],
+                    #patient_image = data['patientImage']
+                    )
+                    # if 'patient_image' in data and data['patient_image']:
+                    #     image_data = data['patient_image'].split(';base64,')
+                    #     if len(image_data) == 2:
+                    #         image_content = ContentFile(base64.b64decode(image_data[1]), name='patient_image.jpg')
+                    #         patient.patient_image.save('patient_image.jpg', image_content)
+                    print(patient)
+                    patient.save()
+           
+            return JsonResponse({'success': True})
 
 
 
@@ -215,6 +225,56 @@ class PatientInfoView(View):
         }
         return JsonResponse(data)
     
+class DocDash(View):       
+        
+    def get(self, request):
+    
+        doctor_id = DoctorLogin.objects.first().doctor_id
+        print(doctor_id)
+        
+        doctor_info = [{
+                    'doctor_id': doctor_id.doctor_id,
+                    'firstName': doctor_id.first_name,
+                    'lastName': doctor_id.last_name,
+                    'department': doctor_id.department,
+                    'hospital': doctor_id.hospital,
+                    'email': doctor_id.email,
+                }]
+            # doctor_list.append(doctor_info)
+        return JsonResponse(doctor_info, status=200,safe=False)
+  
+
+class DocPatientView(View):       
+        
+    def get(self, request):
+    
+        doctor_id = DoctorLogin.objects.first().doctor_id
+        consultation = Doctor.objects.filter(doctor_id=doctor_id).first()
+       
+        if consultation:
+            doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
+            #print(doc_id)  # Print the value of doc_id
+            
+            doctor = Doctor.objects.filter(doctor_id=doc_id).first()
+            
+            if doctor:
+                doctor_id = doctor.doctor_id
+            doctor = Doctor.objects.filter(doctor_id=doctor_id).first()
+            doctor_list=[]
+            doctor_info = [{
+                    'doctor_id': doctor.doctor_id,
+                    'firstName': doctor.first_name,
+                    'lastName': doctor.last_name,
+                    'department': doctor.department,
+                    'hospital': doctor.hospital,
+                    'email': doctor.email,
+                }]
+            # doctor_list.append(doctor_info)
+            return JsonResponse(doctor_info, status=200,safe=False)
+  
+        else:
+            return JsonResponse({'error': 'Consultation not found'}, status=404)
+     
 from django.utils import timezone
 from .models import Time
 import time

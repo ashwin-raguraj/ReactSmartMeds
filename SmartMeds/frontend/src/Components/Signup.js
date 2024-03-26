@@ -170,7 +170,7 @@ export default function Signup() {
         if (response.data.success) {
           window.location.href = '/Login';
         } else {
-          alert('Signup failed. Please try again.');
+          alert('User Exists. Please try again with different Email or ID.');
         }
       })
       .catch((error) => {
@@ -284,9 +284,9 @@ export default function Signup() {
               <input
                 type='text'
                 className='form-control'
-                id='doctorId'
-                value={doctorId}
-                onChange={(e) => setdoctorId(e.target.value)}
+                id='patientId'
+                value={patientId}
+                onChange={(e) => setpatientId(e.target.value)}
                 placeholder='Doctor ID'
                 required
               />
@@ -302,8 +302,15 @@ export default function Signup() {
                 required
               >
                 <option value='' disabled>Select Department</option>
-                <option value='Cardiology'>Cardiology</option>
+                <option value='General Medicine'>General Medicine</option>
                 <option value='Orthopedics'>Orthopedics</option>
+                <option value='Urology'>Urology</option>
+                <option value='Oncology'>Oncology</option>
+                <option value='Pediatrics'>Pediatrics</option>
+                <option value='Cardiology'>Cardiology</option>
+                <option value='Neurology'>Neurology</option>
+                <option value='Gynaecology'>Gynaecology</option>
+                <option value=''>Neurology</option>
                 {/* Add more options as needed */}
               </select>
             </div>
@@ -318,8 +325,17 @@ export default function Signup() {
                 required
               >
                 <option value='' disabled>Select Hospital</option>
-                <option value='General Hospital'>General Hospital</option>
-                <option value='Community Clinic'>Community Clinic</option>
+                <option value='Apollo Hospital'>Apollo Hospital</option>
+                <option value='Aster Medcity'>Aster Medcity</option>
+                <option value='Alappuzha Medical College'>Alappuzha Medical College</option>
+                <option value='Thrissur Medical College'>Thrissur Medical College</option>
+                <option value='Rajagiri Hospital'>Rajagiri Hospital</option>
+                <option value='LF Hospital'>LF Hospital</option>
+                <option value='Kinder Hospital'>Kinder Hospital</option>
+                <option value='Renai Medcity'>Renai Medcity</option>
+                <option value='Ernakulam Medical Center'>Ernakulam Medical Center</option>
+                <option value='Lissie Hospital'>Lissie Hospital</option>
+                
                 {/* Add more options as needed */}
               </select>
             </div>
