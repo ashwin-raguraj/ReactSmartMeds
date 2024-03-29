@@ -2,12 +2,20 @@
   font-family: 'Poppins', sans-serif;
   
 }
-
+.page{
+  padding: 6%;
+  margin-top: -70px;
+  
+}
 .patient-content {
   
   padding: 20px;
 }
-
+.formconsult
+{
+  margin-top: -13%;
+  margin-bottom: -155px;
+}
 .patient-details {
   border: 1px solid #ccc;
   padding: 20px;
@@ -44,7 +52,8 @@
 
 .consultation-form label {
   display: block;
-  margin-bottom: 10px; /* Increased margin */
+  margin-top: 10px; /* Increased margin */
+  padding:0%
 }
 
 .consultation-form input[type="text"],
@@ -71,9 +80,12 @@
 }
 
 .table {
-  width: 100%;
+  width: 200%;
   border-collapse: separate;
-  border-spacing: 10px; /* Adjust this value as needed */
+  border-spacing: 1px; /* Adjust this value as needed */
+  padding:0%
+  
+  
 }
 
 .table th

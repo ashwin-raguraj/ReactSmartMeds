@@ -56,9 +56,10 @@ const Dashboard = () => {
                   sx={{
                     backgroundColor: 'primary.main',
                     color: 'white',
-                    height: '300px',
+                    height: '350px',
                     width: '300px',
                     padding: '16px',
+                    marginBottom:'px',
                     '&:hover': { backgroundColor: 'primary.light' },
                   }}
                 >
@@ -72,11 +73,12 @@ const Dashboard = () => {
                 </Box>
               </div>
             </div>
-
+            
             <div className='col-md-4'>
               <div className='container pb-5'>
                 <h2 className='pt-5'>Last Consultation Details</h2>
                 <div className='container p-0 m-0'>
+                  
                   {consultationDetails.length > 0 && (
                     <div>
                       <p>Date: {consultationDetails[0].date}</p>
@@ -84,6 +86,7 @@ const Dashboard = () => {
                       <p>Comment: {consultationDetails[0].comment}</p>
                     </div>
                   )}
+                  
                 </div>
               </div>
             </div>
@@ -104,7 +107,7 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
+            <div className='last'>
             <div className='col-md-4'>
               <h2 className='pt-5'>Previous Consultations</h2>
               <div className='container p-0 m-0'>
@@ -139,6 +142,7 @@ const Dashboard = () => {
                 )}
               </div>
             </div>
+          </div>
           </div>
 
           <div className='row mt-5'>

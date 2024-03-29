@@ -301,6 +301,7 @@ const PatientPage = () => {
   return (
     <div className="patient-page">
       <Navbar3 />
+      <div className='page'>
       <div className="patient-list">
       <h1>Your Patients </h1>
       
@@ -330,6 +331,7 @@ const PatientPage = () => {
           {showForm && (
             <div className="consultation-form">
               <h2>New Consultation</h2>
+              <div className='formconsult'>
               <form onSubmit={handleSubmit}>
                 {/* Form inputs go here */}
                 <label htmlFor="doctor_id">Doctor ID:</label>
@@ -392,15 +394,18 @@ const PatientPage = () => {
                 ))}
               </tbody>
             </table>
-            <button type="button" onClick={handleAddMedicine}>Add Medicine</button>
+            <button type="addbutton" onClick={handleAddMedicine}>Add Medicine</button>
                 <button type="submit">Submit</button>
               </form>
+              </div>
             </div>
           )}
         </div>
       )}
       <Footer />
-    </div>
+      </div>
+      </div>
+    
   );
 };
 
