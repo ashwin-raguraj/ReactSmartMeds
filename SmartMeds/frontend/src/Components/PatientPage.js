@@ -302,6 +302,7 @@ const PatientPage = () => {
     <div className="patient-page">
       <Navbar3 />
       <div className='page'>
+        
       <div className="patient-list">
       <h1>Your Patients </h1>
       

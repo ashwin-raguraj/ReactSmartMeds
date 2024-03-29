@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .Sequence.alert import alert
 from .Sequence.script import sequence
-from .FaceRecognition.FaceAuth.face_html_try import FaceAuthFunction
+#from .FaceRecognition.FaceAuth.face_html_try import FaceAuthFunction
+from .FaceRecognition.FaceAuth.face5 import FaceAuthFunction
 
 # from .Recommendation.Order.collect_pkl_and_run_pkl import Get_Recommendations
 

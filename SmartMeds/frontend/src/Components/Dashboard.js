@@ -47,6 +47,7 @@ const Dashboard = () => {
       <nav>
         <Navbar2 />
       </nav>
+      <div className="bg-img2 position-relative d-flex justify-content-center"></div>
       <div className='dashboard-body'>
         <div className='container'>
           <div className='row'>

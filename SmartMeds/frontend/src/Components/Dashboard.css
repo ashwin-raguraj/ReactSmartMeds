@@ -10,6 +10,16 @@
    width: 100vw;
    height: 60vh;
 }
+.bg-img2{
+  font-family: 'Poppins', sans-serif; 
+   background-image:url('../Assets/slide5.png') ;
+   background-size:cover;
+   background-repeat: no-repeat;
+   
+   width: 100vw;
+   height: 56vh;
+   
+}
 .fg-content{
   position: absolute;
   top:2rem;
@@ -38,4 +48,7 @@
     font-size: 3rem;
     top: 60%;
   }
+}
+.container{
+  margin-top: 20px;
 }
