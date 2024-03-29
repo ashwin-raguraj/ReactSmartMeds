@@ -24,6 +24,7 @@ import About from './Components/FooterPages/About';
 import Team from './Components/FooterPages/Team';
 import FAQ from './Components/FooterPages/FAQ';
 import PatientPage from './Components/PatientPage';
+// import Patients from './Components/Patients';
 
 // import { FaCheckDouble } from 'react-icons/fa';
 
@@ -47,6 +48,7 @@ function App() {
               <Route path='/Dashboard' element={<Dashboard/>}/>
               <Route path='/DocDashboard' element={<DocDashboard/>}/>
               <Route path='/PatientPage' element={<PatientPage/>}/>
+              {/* <Route path='/Patients' element={<Patients/>}/> */}
               <Route path='/Restaurant' element={<Restaurant/>}/>
 
                <Route path='/Cart' element={<Cart/>}/> 

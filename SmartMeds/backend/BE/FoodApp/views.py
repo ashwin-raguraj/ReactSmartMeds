@@ -246,35 +246,67 @@ class DocDash(View):
 
 class DocPatientView(View):       
         
-    def get(self, request):
+    # def get(self, request):
     
-        doctor_id = DoctorLogin.objects.first().doctor_id
-        consultation = Doctor.objects.filter(doctor_id=doctor_id).first()
+    #     doctor_id = DoctorLogin.objects.first().doctor_id
+    #     consultation = Doctor.objects.filter(doctor_id=doctor_id).first()
        
-        if consultation:
-            doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
-            #print(doc_id)  # Print the value of doc_id
+    #     if consultation:
+    #         doc_id = consultation.doctor_id.doctor_id  # Access the ID attribute directly
+    #         #print(doc_id)  # Print the value of doc_id
             
-            doctor = Doctor.objects.filter(doctor_id=doc_id).first()
+    #         doctor = Doctor.objects.filter(doctor_id=doc_id).first()
             
-            if doctor:
-                doctor_id = doctor.doctor_id
-            doctor = Doctor.objects.filter(doctor_id=doctor_id).first()
-            doctor_list=[]
-            doctor_info = [{
-                    'doctor_id': doctor.doctor_id,
-                    'firstName': doctor.first_name,
-                    'lastName': doctor.last_name,
-                    'department': doctor.department,
-                    'hospital': doctor.hospital,
-                    'email': doctor.email,
-                }]
-            # doctor_list.append(doctor_info)
-            return JsonResponse(doctor_info, status=200,safe=False)
+    #         if doctor:
+    #             doctor_id = doctor.doctor_id
+    #         doctor = Doctor.objects.filter(doctor_id=doctor_id).first()
+    #         doctor_list=[]
+    #         doctor_info = [{
+    #                 'doctor_id': doctor.doctor_id,
+    #                 'firstName': doctor.first_name,
+    #                 'lastName': doctor.last_name,
+    #                 'department': doctor.department,
+    #                 'hospital': doctor.hospital,
+    #                 'email': doctor.email,
+    #             }]
+    #         # doctor_list.append(doctor_info)
+    #         return JsonResponse(doctor_info, status=200,safe=False)
   
-        else:
-            return JsonResponse({'error': 'Consultation not found'}, status=404)
+    #     else:
+    #         return JsonResponse({'error': 'Consultation not found'}, status=404)
      
+        
+    def get(self, request):
+        # Assuming you have a way to authenticate the doctor and get their ID
+        doctor_id = DoctorLogin.objects.first().doctor_id  # Assuming the authenticated user is a doctor
+        
+        # Filter consultations based on the doctor's ID
+        consultations = Consultation.objects.filter(doctor_id=doctor_id)
+        
+        patient_ids_seen = set()  # Store unique patient IDs
+        
+        patient_info_list = []
+        for consultation in consultations:
+            patient_id = consultation.patient_id.patient_id
+            if patient_id not in patient_ids_seen:
+                # Get patient information related to each unique patient ID
+                patient_ids_seen.add(patient_id)
+                patient = consultation.patient_id
+                patient_info = {
+                    'patient_id': patient.patient_id,
+                    'first_name': patient.first_name,
+                    'last_name': patient.last_name,
+                    'email': patient.email,
+                    'age': patient.age,
+                    'patient_image': str(patient.patient_image),  # Assuming patient_image is a file field
+                    'comment': consultation.comment,
+                    'date': consultation.date,
+                    'medicines': json.loads(consultation.medicines)  # Assuming medicines is a comma-separated string
+                }
+                patient_info_list.append(patient_info)
+        
+        return JsonResponse(patient_info_list, safe=False)
+
 from django.utils import timezone
 from .models import Time
 import time
