@@ -59,7 +59,7 @@ const Dashboard = () => {
                     color: 'white',
                     height: '350px',
                     width: '300px',
-                    padding: '16px',
+                    padding: '10px',
                     marginBottom:'px',
                     '&:hover': { backgroundColor: 'primary.light' },
                   }}
@@ -77,35 +77,57 @@ const Dashboard = () => {
             
             <div className='col-md-4'>
               <div className='container pb-5'>
-                <h2 className='pt-5'>Last Consultation Details</h2>
-                <div className='container p-0 m-0'>
-                  
-                  {consultationDetails.length > 0 && (
-                    <div>
-                      <p>Date: {consultationDetails[0].date}</p>
-                      <p>Consultation ID: {consultationDetails[0].consult_id}</p>
-                      <p>Comment: {consultationDetails[0].comment}</p>
-                    </div>
-                  )}
-                  
-                </div>
+                <Box
+                  sx={{
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    height: '350px',
+                    width: '300px',
+                    padding: '10px',
+                    marginBottom:'px',
+                    '&:hover': { backgroundColor: 'primary.light' },
+                  }}
+                >
+                  <h2 className='pt-5'>Last Consultation Details</h2>
+                  <div className='container p-0 m-0'>
+                    {consultationDetails.length > 0 && (
+                      <div>
+                        <p>Date: {consultationDetails[0].date}</p>
+                        <p>Consultation ID: {consultationDetails[0].consult_id}</p>
+                        <p>Comment: {consultationDetails[0].comment}</p>
+                      </div>
+                    )}
+                  </div>
+                </Box>
               </div>
             </div>
 
             <div className='col-md-4'>
               <div className='container pb-5'>
-                <h2 className='pt-5'>Your Doctor </h2>
-                <div className='container p-0 m-0'>
-                  {doctorInfo.map((doctor, index) => (
-                    <div key={index}>
-                      <p>Doctor ID: {doctor.doctor_id}</p>
-                      <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
-                      <p>Hospital: {doctor.hospital}</p>
-                      <p>Department: {doctor.department}</p>
-                      <p>Email: {doctor.email}</p>
-                    </div>
-                  ))}
-                </div>
+                <Box
+                  sx={{
+                    backgroundColor: 'primary.main',
+                    color: 'white',
+                    height: '350px',
+                    width: '300px',
+                    padding: '10px',
+                    marginBottom:'px',
+                    '&:hover': { backgroundColor: 'primary.light' },
+                  }}
+                >
+                  <h2 className='pt-5'>Your Doctor </h2>
+                  <div className='container p-0 m-0'>
+                    {doctorInfo.map((doctor, index) => (
+                      <div key={index}>
+                        <p>Doctor ID: {doctor.doctor_id}</p>
+                        <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
+                        <p>Hospital: {doctor.hospital}</p>
+                        <p>Department: {doctor.department}</p>
+                        <p>Email: {doctor.email}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Box>
               </div>
             </div>
             <div className='last'>
