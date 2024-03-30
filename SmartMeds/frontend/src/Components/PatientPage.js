@@ -194,6 +194,10 @@ import axios from 'axios';
 import './PatientPage.css';
 
 const PatientPage = () => {
+
+ 
+    
+    
   const [patients, setPatients] = useState([{
     doctor_id: '', // Assuming the doctor_id will be filled later
     patient_id: '',
@@ -215,6 +219,7 @@ const PatientPage = () => {
     medicines: [],
   });
   const quantityOptions = Array.from({ length: 30 }, (_, i) => i + 1);
+  const [doctorInfo, setDoctorInfo] = useState([]);
   const timeOptions = [];
   for (let hour = 6; hour <= 22; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
@@ -235,6 +240,7 @@ const PatientPage = () => {
     // Add the new medicine to the medicines array in the form data
     setFormData({ ...formData, medicines: [...formData.medicines, newMedicine] });
   };
+  
   const handleRemoveMedicine = (index) => {
     const updatedMedicines = [...formData.medicines];
     updatedMedicines.splice(index, 1);
@@ -247,11 +253,21 @@ const PatientPage = () => {
 
   const fetchPatients = async () => {
     try {
-      const response = await axios.get('http://localhost:3030/doc/patients/');
+      // const response = await axios.get('http://localhost:3030/doc/patients/');
+      const response = await axios.get('http://127.0.0.1:8000/doc/patients/');
       if (response && response.data) {
         setPatients(response.data);
       }
     } catch (error) {
+      console.log(error);
+    }
+    try{
+      const doctorResponse = await axios.get('http://127.0.0.1:8000/docdash/');
+      if (doctorResponse && doctorResponse.data) {
+        setDoctorInfo(doctorResponse.data);
+      }
+    }
+    catch (error) {
       console.log(error);
     }
   };
@@ -268,7 +284,7 @@ const PatientPage = () => {
     setShowForm(true);
     setFormData({
       ...formData,
-      doctor_id: 'your-doctor-id', // Replace 'your-doctor-id' with the actual doctor ID
+      doctor_id: doctorInfo.doctor_id, // Replace 'your-doctor-id' with the actual doctor ID
       patient_id: patient.patient_id,
       comment: '',
       date: new Date().toISOString().split('T')[0],
@@ -327,83 +343,88 @@ const PatientPage = () => {
           <div className="patient-info">
             <p>Patient ID: {selectedPatient.patient_id}</p>
             <p>Name: {selectedPatient.first_name} {selectedPatient.last_name}</p>
+            <p>Age: {selectedPatient.age}</p>
+            <p>Email: {selectedPatient.email}</p>
+            
             {/* Add more patient details here */}
           </div>
           {showForm && (
             <div className="consultation-form">
               <h2>New Consultation</h2>
               <div className='formconsult'>
-              <form onSubmit={handleSubmit}>
-                {/* Form inputs go here */}
-                <label htmlFor="doctor_id">Doctor ID:</label>
-                <input type="text" id="doctor_id" name="doctor_id" value={formData.doctor_id} onChange={handleChange} readOnly />
-                <label htmlFor="patient_id">Patient ID:</label>
-                <input type="text" id="patient_id" name="patient_id" value={formData.patient_id} onChange={handleChange} readOnly />
-                <label htmlFor="comment">Comment:</label>
-                <textarea id="comment" name="comment" value={formData.comment} onChange={handleChange}></textarea>
-                <label htmlFor="date">Date:</label>
-                <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} />
-                {/* <label htmlFor="medicine">Select Medicine:</label> */}
-               
+                <form onSubmit={handleSubmit}>
+                  {/* Form inputs go here */}
+                  <label htmlFor="doctor_id">Doctor ID:</label>
+                  <input type="text" id="doctor_id" name="doctor_id" value={formData.doctor_id} onChange={handleChange} readOnly />
+                  <label htmlFor="patient_id">Patient ID:</label>
+                  <input type="text" id="patient_id" name="patient_id" value={formData.patient_id} onChange={handleChange} readOnly />
+                  <label htmlFor="comment">Comment:</label>
+                  <textarea id="comment" name="comment" value={formData.comment} onChange={handleChange}></textarea>
+                  <label htmlFor="date">Date:</label>
+                  <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} />
+                  {/* <label htmlFor="medicine">Select Medicine:</label> */}
                 
-                <table>
-              <thead>
-                 <tr>
-                  <th>Medicine Name</th>
-                  <th>Dosage</th>
-                 <th>Quantity</th>
-                   <th>Time</th>
-                  <th>Actions</th>
-               </tr>
-              </thead>
-              <tbody>
-                {formData.medicines.map((medicine, index) => (
-                  <tr key={index}>
-                    <td>
-                    <select id="medicine" name="medicine" onChange={handleMedicineChange}>
-                  <option value='' disabled>Select Medicine</option>
-                  <option value='Medicine1'>Medicine1</option>
-                  <option value='Medicine2'>Medicine2</option>
-                  {/* Add more options as needed */}
-                </select>
-                    </td>
-                    <td>
-                      <input type="text" value={medicine.dosage} onChange={(e) => handleMedicineChange(index, 'dosage', e.target.value)} />
-                    </td>
-                    <td>
-                      <select value={medicine.qty} onChange={(e) => handleMedicineChange(index, 'qty', e.target.value)}>
-                        {quantityOptions.map((qty, idx) => (
-                          <option key={idx} value={qty}>
-                            {qty}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td>
-                      <select value={medicine.timeToConsume} onChange={(e) => handleMedicineChange(index, 'timeToConsume', e.target.value)}>
-                        {timeOptions.map((time, idx) => (
-                          <option key={idx} value={time}>
-                            {time}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td>
-                      <button type="button" onClick={() => handleRemoveMedicine(index)}>Remove</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <button type="addbutton" onClick={handleAddMedicine}>Add Medicine</button>
-                <button type="submit">Submit</button>
-              </form>
+                  
+                  <table>
+                <thead>
+                  <tr>
+                    <th>Medicine Name</th>
+                    <th>Dosage</th>
+                  <th>Quantity</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {formData.medicines.map((medicine, index) => (
+                    <tr key={index}>
+                      <td>
+                      <select id="medicine" name="medicine" onChange={handleMedicineChange}>
+                    <option value='' disabled>Select Medicine</option>
+                    <option value='Medicine1'>Medicine1</option>
+                    <option value='Medicine2'>Medicine2</option>
+                    {/* Add more options as needed */}
+                  </select>
+                      </td>
+                      <td>
+                        <input type="text" value={medicine.dosage} onChange={(e) => handleMedicineChange(index, 'dosage', e.target.value)} />
+                      </td>
+                      <td>
+                        <select value={medicine.qty} onChange={(e) => handleMedicineChange(index, 'qty', e.target.value)}>
+                          {quantityOptions.map((qty, idx) => (
+                            <option key={idx} value={qty}>
+                              {qty}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
+                      <td>
+                        <select value={medicine.timeToConsume} onChange={(e) => handleMedicineChange(index, 'timeToConsume', e.target.value)}>
+                          {timeOptions.map((time, idx) => (
+                            <option key={idx} value={time}>
+                              {time}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
+                      <td>
+                        <button type="button" onClick={() => handleRemoveMedicine(index)}>Remove</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button type="addbutton" onClick={handleAddMedicine}>Add Medicine</button>
+                  <button type="submit">Submit</button>
+                </form>
               </div>
             </div>
           )}
         </div>
       )}
-      <Footer />
+          <div className='foot'>
+            <Footer />
+          </div>
       </div>
       </div>
     

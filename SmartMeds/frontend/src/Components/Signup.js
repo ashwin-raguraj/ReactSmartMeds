@@ -314,14 +314,14 @@ export default function Signup() {
                 {/* Add more options as needed */}
               </select>
             </div>
-            <div className='form-group'style={{ position: 'relative', left: '-27px'}}>
+            <div className='form-group'style={{ position: 'relative', left: '8px'}}>
               <label htmlFor='hospital'>Hospital Name</label>
               <select
                 id='hospital'
                 className='form-control'
                 value={hospital}
                 onChange={(e) => setHospital(e.target.value)}
-                style={{ width: '133%' }}
+                style={{ width: '90%' }}
                 required
               >
                 <option value='' disabled>Select Hospital</option>

@@ -21,6 +21,7 @@
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
+ 
 }
 
 .new-consultation-button {
@@ -40,6 +41,7 @@
 
 .consultation-form {
   margin-top: 20px;
+  
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
@@ -117,12 +119,14 @@
   border: 5px solid #ccc;
   border-radius: 25px;
   margin-bottom: 25px;
+  
 }
 
 .patient-info {
-  margin-left: 25px;
+  
   padding: 18px;
   font-size: 20px;
+  margin-left: -5px;
 }
 
 .button-container {
@@ -145,3 +149,6 @@
   background-color: #45a049;
 }
 
+.foot{
+  margin-left: -105px;
+}

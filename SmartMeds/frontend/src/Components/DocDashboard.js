@@ -163,7 +163,7 @@ const DocDashboard = () => {
               {doctorInfo.map((doctor, index) => (
         <div key={index}>
           
-          <h1>Dr. {doctor.firstName} {doctor.lastName}</h1>
+          {/* <h1>Dr. {doctor.firstName} {doctor.lastName}</h1> */}
           
         </div>
       ))}
