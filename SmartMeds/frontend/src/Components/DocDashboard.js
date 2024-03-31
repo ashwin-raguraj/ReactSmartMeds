@@ -243,23 +243,22 @@ const DocDashboard = () => {
             </div>
           <div className='col-md-4'>
               <div className='container pb-5'>
-                <h2 className='pt-5'>Doctor Information</h2>
-                <div className='container p-0 m-0'>
-                  {/* <p>Doctor ID: {doctorInfo.doctorId}</p>
-                  <p>Name: {doctorInfo.firstName} {doctorInfo.lastName}</p>
-                  <p>Hospital: {doctorInfo.hospital}</p>
-                  <p>Department: {doctorInfo.department}</p>
-                  <p>Email: {doctorInfo.email}</p> */}
-                  {doctorInfo.map((doctor, index) => (
-        <div key={index}>
-          <p>Doctor ID: {doctor.doctor_id}</p>
-          <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
-          <p>Hospital: {doctor.hospital}</p>
-          <p>Department: {doctor.department}</p>
-          <p>Email: {doctor.email}</p>
-        </div>
-      ))}
-                </div>
+              <Box sx={{
+                     backgroundColor: 'primary.main',
+                     color: 'white', height: '350px',
+                     width: '300px', padding: '10px',
+                     marginBottom: '20px', '&:hover': { backgroundColor: 'primary.light' }, }}>
+                      <h2>Doctor Information</h2>
+                      {doctorInfo.map((doctor, index) => (
+                        <div key={index}>
+                          <p>Doctor ID: {doctor.doctor_id}</p>
+                          <p>Name: Dr. {doctor.firstName} {doctor.lastName}</p>
+                          <p>Hospital: {doctor.hospital}</p>
+                          <p>Department: {doctor.department}</p>
+                          <p>Email: {doctor.email}</p>
+                        </div>
+                      ))}
+                    </Box>
               </div>
             </div>
         </div>

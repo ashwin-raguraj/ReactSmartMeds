@@ -1,47 +1,56 @@
-form{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-      
+form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.btn{
-    margin-top: 20px
-}
-.formbg{
-    background-image: url("../Assets/Signup.jpg");
-    background-position: center; 
-    background-size: cover; 
 
+.btn {
+  margin-top: 20px;
 }
-h3{
-    color: black;
-    
+
+.formbg {
+  background-image: url("../Assets/Signup.jpg");
+  background-position: center;
+  background-size: cover;
 }
-.para{
-    color: black;}
 
+h3 {
+  color: black;
+}
 
-    .toggle-container {
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-      }
-      
-      .toggle-button {
-        padding: 10px 20px;
-        cursor: pointer;
-        
-        border: 1px solid #ccc;
-        background-color: #fff;
-        color: #333;
-      }
-      
-      .toggle-button.active {
-        background-color: #007bff;
-        color: #fff;
-        border: 1px solid #007bff;
-      }
-      
+.para {
+  color: black;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-button.active {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
+.toggle-button:not(.active):hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
