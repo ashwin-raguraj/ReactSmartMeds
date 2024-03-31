@@ -133,37 +133,44 @@ const Dashboard = () => {
             <div className='last'>
             <div className='col-md-4'>
               <h2 className='pt-5'>Previous Consultations</h2>
-              <div className='container p-0 m-0'>
-                <select className='form-select' onChange={handleConsultationSelect}>
-                  <option value=''>Select Consultation</option>
-                  {consultationDetails.map((consultation) => (
-                    <option key={consultation.consult_id} value={consultation.consult_id}>
-                      Consultation ID: {consultation.consult_id} - Date: {consultation.date}
-                    </option>
-                  ))}
-                </select>
-                {selectedConsultation && (
-                  <div>
-                    <p>Date: {selectedConsultation.date}</p>
-                    {doctorInfo.map((doctor, index) => (
-                      <div key={index}>
-                        <p>Doctor ID: {doctor.doctor_id}</p>
-                        <p>Doctor: Dr. {doctor.firstName} {doctor.lastName}</p>
-                      </div>
+              <div className='container p-4'>
+                  <select className='form-select mb-4' onChange={handleConsultationSelect}>
+                    <option value=''>Select Consultation</option>
+                    {consultationDetails.map((consultation) => (
+                      <option key={consultation.consult_id} value={consultation.consult_id}>
+                        Consultation ID: {consultation.consult_id} - Date: {consultation.date}
+                      </option>
                     ))}
-                    <p>Comment: {selectedConsultation.comment}</p>
-                    <ul>
-                      {selectedConsultation.medicines.map((medicine, index) => (
-                        <li key={index}>
-                          <p>Medicine Name: {medicine.medname}</p>
-                          <p>Dosage: {medicine.dosage}</p>
-                          <p>Quantity: {medicine.qty}</p>
-                        </li>
+                  </select>
+
+                  {selectedConsultation && (
+                    <div className="bg-light p-4 rounded"style={{ width: '280%' }}>
+                      <h5 className="mb-4">Consultation Details</h5>
+                      <p><strong>Date:</strong> {selectedConsultation.date}</p>
+                      {doctorInfo.map((doctor, index) => (
+                        <div key={index}>
+                          <p><strong>Doctor ID:</strong> {doctor.doctor_id}</p>
+                          <p><strong>Doctor:</strong> Dr. {doctor.firstName} {doctor.lastName}</p>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                      <p><strong>Comment:</strong> {selectedConsultation.comment}</p>
+                      
+                      <ul className="list-styled">
+                        {selectedConsultation.medicines.map((medicine, index) => (
+                          <li key={index} >
+                            <div>
+                              <span><strong>Medicine Name:</strong> {medicine.medname}</span><br/>
+                              <span><strong>Dosage:</strong> {medicine.dosage}</span><br/>
+                              <span><strong>Days:</strong> {medicine.days}</span><br/>
+                              <span><strong>Quantity:</strong> {medicine.qty}</span><br/><br/>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
             </div>
           </div>
           </div>
