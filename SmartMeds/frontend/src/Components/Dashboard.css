@@ -20,6 +20,27 @@
    height: 56vh;
    
 }
+.bg-img3{
+  font-family: 'Poppins', sans-serif; 
+   background-image:url('../Assets/dash3.png') ;
+
+   background-size: contain; /* Adjust the background size as needed */
+   background-repeat: no-repeat; /* Prevent image from repeating */
+   background-position: center; /* Center the background image */
+   margin-left: 600px;
+   margin-top: -650px;
+   width: 45vw;
+   height: 80vh;
+  
+   border-radius: 200px;
+   opacity: 0; /* Hide the element by default */
+   transition: opacity 0.5s ease-in-out; /* Add transition for opacity */
+   
+}
+.bg-img3.fade-in {
+  opacity: 1; /* Ensure opacity is set to 1 */
+}
+
 .fg-content{
   position: absolute;
   top:2rem;

@@ -61,6 +61,7 @@ const Dashboard = () => {
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
+                    marginLeft:'100px',
                     '&:hover': { backgroundColor: 'primary.light' },
                   }}
                 >
@@ -85,6 +86,7 @@ const Dashboard = () => {
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
+                    marginLeft:'100px',
                     '&:hover': { backgroundColor: 'primary.light' },
                   }}
                 >
@@ -112,6 +114,7 @@ const Dashboard = () => {
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
+                    marginLeft:'100px',
                     '&:hover': { backgroundColor: 'primary.light' },
                   }}
                 >
@@ -132,9 +135,28 @@ const Dashboard = () => {
             </div>
             <div className='last'>
             <div className='col-md-4'>
-              <h2 className='pt-5'>Previous Consultations</h2>
+              <h2 className='pt-5'style={{
+                                  padding: '10px',         // Adjust padding as needed
+                                  fontSize: '30px',        // Adjust font size as needed
+                                  borderRadius: '5px',     // Rounded corners
+                                  //border: '1px solid #ccc', // Border color
+                                  width: '125%',           // Full width
+                                  //backgroundColor: 'rgb(156, 243, 219)', // Background color
+                                  color: '#fffff',           // Text color
+                
+                                }}>Previous Consultations</h2>
               <div className='container p-4'>
-                  <select className='form-select mb-4' onChange={handleConsultationSelect}>
+                  <select className='form-select mb-4' onChange={handleConsultationSelect}style={{
+                                  padding: '10px',         // Adjust padding as needed
+                                  fontSize: '18px',        // Adjust font size as needed
+                                  borderRadius: '5px',     // Rounded corners
+                                  border: '1px solid #ccc', // Border color
+                                  width: '100%',           // Full width
+                                  backgroundColor: 'rgb(156, 243, 219)', // Background color
+                                  color: 'black',           // Text color
+                                  //boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)', // Box shadow
+                                  cursor: 'pointer',       // Cursor on hover
+                                }}>
                     <option value=''>Select Consultation</option>
                     {consultationDetails.map((consultation) => (
                       <option key={consultation.consult_id} value={consultation.consult_id}>
@@ -144,7 +166,7 @@ const Dashboard = () => {
                   </select>
 
                   {selectedConsultation && (
-                    <div className="bg-light p-4 rounded"style={{ width: '280%' }}>
+                    <div className="bg-light p-4 rounded"style={{ width: '100%' }}>
                       <h5 className="mb-4">Consultation Details</h5>
                       <p><strong>Date:</strong> {selectedConsultation.date}</p>
                       {doctorInfo.map((doctor, index) => (
@@ -167,14 +189,18 @@ const Dashboard = () => {
                           </li>
                         ))}
                       </ul>
+                       {/* Fade-in effect for .bg-img3 */}
+                       <div className={`bg-img3 position-relative d-flex justify-content-center ${selectedConsultation ? 'fade-in' : ''}`}></div>
                     </div>
                   )}
+                  
                 </div>
-
+                
             </div>
+            
           </div>
           </div>
-
+          
           <div className='row mt-5'>
             <div className='col-md-12'>
               <div className='container pb-5'>
