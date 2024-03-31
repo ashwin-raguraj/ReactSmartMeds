@@ -312,7 +312,7 @@ from django.utils import timezone
 from .models import Time
 import time
 
-
+import winsound
 
 def get_times(request=None):
     while True:
@@ -321,20 +321,30 @@ def get_times(request=None):
 
        
         times = Time.objects.filter(time__lte=current_time)
+        print(times)
         
         # List to store the times that need to be cleared
         times_to_clear = []
 
         if times.exists():
+            winsound.Beep(1000, 1000)
+            winsound.Beep(1000, 1000)
+            winsound.Beep(1000, 1000)
+            winsound.Beep(1000, 1000)
             print("Notification: It's time for alert!")
             alert()
             a=2
             b=3
             file_path = "C:/Users/ashwi/Desktop/Ashwin/Ashwin.jpg"
-            FaceAuthFunction(file_path)
-            sequence(a,b)
+            result= FaceAuthFunction(file_path)
 
-            
+            if result !=None:
+                print("Authenticated")
+                sequence(a,b)
+
+            else:
+                print("Authentication Failure")
+                
             # You can trigger any other notification mechanism here
             
             # Add times to the list to be cleared

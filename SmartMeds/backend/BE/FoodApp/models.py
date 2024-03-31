@@ -76,7 +76,7 @@ class Time(models.Model):
     time = models.TimeField()
 
     def __str__(self):
-        return self.time.strftime('%H:%M')
+        return self.time.strftime('%H:%M:%S')
     
 
 # # Create your models here.
