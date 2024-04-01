@@ -1,27 +1,26 @@
 .patient-page {
   font-family: 'Poppins', sans-serif;
-  
 }
-.page{
+
+.page {
   padding: 6%;
   margin-top: -70px;
-  
 }
+
 .patient-content {
-  
   padding: 20px;
 }
-.formconsult
-{
+
+.formconsult {
   margin-top: -13%;
   margin-bottom: -155px;
 }
+
 .patient-details {
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
- 
 }
 
 .new-consultation-button {
@@ -41,7 +40,6 @@
 
 .consultation-form {
   margin-top: 20px;
-  
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
@@ -54,15 +52,15 @@
 
 .consultation-form label {
   display: block;
-  margin-top: 10px; /* Increased margin */
-  padding:0%
+  margin-top: 10px;
+  padding: 0%;
 }
 
 .consultation-form input[type="text"],
 .consultation-form textarea {
-  width: calc(100% - 20px); /* Adjusted width */
-  padding: 12px; /* Increased padding */
-  margin-bottom: 20px; /* Increased margin */
+  width: calc(100% - 20px);
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -71,7 +69,7 @@
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 12px 24px; /* Increased padding */
+  padding: 12px 24px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
@@ -83,31 +81,64 @@
 
 .table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 1px; /* Adjust this value as needed */
-  padding:0%
-  
-  
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.table th
-{
-  padding: 10px; /* Adjusted padding */
-}
+.table th,
 .table td {
-  padding: 10px; /* Adjusted padding */
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
 .table th {
   background-color: #f2f2f2;
+  font-weight: bold;
 }
 
 .table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f4f4f4;
 }
 
-.table tr:hover {
-  background-color: #ddd;
+.table select,
+.table input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.table select:focus,
+.table input[type="text"]:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.table button {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.table button:hover {
+  background-color: #d32f2f;
+}
+
+.table button[type="addbutton"] {
+  background-color: #008CBA;
+  margin-top: 10px;
+}
+
+.table button[type="addbutton"]:hover {
+  background-color: #006380;
 }
 
 .patient-tile {
@@ -119,11 +150,9 @@
   border: 5px solid #ccc;
   border-radius: 25px;
   margin-bottom: 25px;
-  
 }
 
 .patient-info {
-  
   padding: 18px;
   font-size: 20px;
   margin-left: -5px;
@@ -149,6 +178,92 @@
   background-color: #45a049;
 }
 
-.foot{
+.foot {
   margin-left: -105px;
+}
+
+/* Headings */
+h1, h2 {
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Patient Information Section */
+.patient-details {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.patient-info {
+  background-color: #f0f0f0;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.patient-info p {
+  margin: 10px 0;
+}
+
+/* New Consultation Section */
+.consultation-form {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.consultation-form h2 {
+  background-color: #43c0ce;
+  color: #fff;
+  padding: 15px;
+  margin-bottom: 0;
+}
+
+.consultation-form form {
+  padding: 20px;
+}
+
+/* Form Fields */
+.consultation-form label {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.consultation-form input[type="text"],
+.consultation-form textarea,
+.consultation-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.consultation-form input[type="text"]:focus,
+.consultation-form textarea:focus,
+.consultation-form select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Submit Button */
+.consultation-form button[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.consultation-form button[type="submit"]:hover {
+  background-color: #45a049;
 }
