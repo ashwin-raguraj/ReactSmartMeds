@@ -4,18 +4,12 @@ import DocDashboard from './Components/DocDashboard';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import Restaurant from './Components/Restaurant';
 
-import Checkout from './Components/Checkout';
-
-import Cart from './Components/Cart/Cart';
 
 
 
 import {BrowserRouter , Route, Routes } from 'react-router-dom';
-import Review from './Components/Review';
-import Order from './Components/Order';
-import Complaint from './Components/Complaint';
+
 
 import Terms from './Components/FooterPages/Terms';
 import Privacy from './Components/FooterPages/Privacy';
@@ -49,13 +43,13 @@ function App() {
               <Route path='/DocDashboard' element={<DocDashboard/>}/>
               <Route path='/PatientPage' element={<PatientPage/>}/>
               {/* <Route path='/Patients' element={<Patients/>}/> */}
-              <Route path='/Restaurant' element={<Restaurant/>}/>
+              {/* <Route path='/Restaurant' element={<Restaurant/>}/>
 
                <Route path='/Cart' element={<Cart/>}/> 
 
               <Route path='/Review' element={<Review/>}/>
               <Route path='/Order' element={<Order/>}/>
-              <Route path='/Complaint' element={<Complaint/>}/>
+              <Route path='/Complaint' element={<Complaint/>}/> */}
 
               <Route path='/Terms' element={<Terms/>}/>
               <Route path='/Privacy' element={<Privacy/>}/>
@@ -65,7 +59,7 @@ function App() {
               <Route path='/FAQ' element={<FAQ/>}/>
 
 
-              <Route path='/Checkout' element={<Checkout/>}/>
+              {/* <Route path='/Checkout' element={<Checkout/>}/> */}
 
 
             </Routes>

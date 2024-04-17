@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar3 from './Navbar3';
 import Footer from './Footer';
 import axios from 'axios';
-import ProductSlider from './ProductSlider'
-import Calendar from './Calendar';
+
+
 import './Dashboard.css'
 import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
@@ -178,7 +178,7 @@ const DocDashboard = () => {
                   {/* {searchResults.map(results => 
                       <li key={results.id}>{results.name}</li>
                     )} */}
-                  <ProductSlider data={searchResults}/>
+                  {/* <ProductSlider data={searchResults}/> */}
                   
                 </div>
               </div>
@@ -238,7 +238,7 @@ const DocDashboard = () => {
               {/* <h2 className='pt-5'>Your Patients</h2> */}
               <div className="container p-0 m-0">
                 
-                <ProductSlider data={recommended}/>
+                {/* <ProductSlider data={recommended}/> */}
               </div>
             </div>
           <div className='col-md-4'>

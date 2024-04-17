@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Navbar2 from './Navbar2'
 import Footer from './Footer'
 import './Dashboard.css'
-import ProductSlider from './ProductSlider'
+
 import SearchBar from './SearchBar'
 import axios from 'axios'
 
