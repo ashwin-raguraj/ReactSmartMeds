@@ -244,7 +244,7 @@ const DocDashboard = () => {
           <div className='col-md-4'>
               <div className='container pb-5'>
               <Box sx={{
-                     backgroundColor: 'primary.main',
+                     backgroundColor: 'info.main',
                      color: 'white', height: '350px',
                      width: '300px', padding: '10px',
                      marginBottom: '20px', '&:hover': { backgroundColor: 'primary.light' }, }}>

@@ -55,14 +55,14 @@ const Dashboard = () => {
               <div className='container pb-5'>
                 <Box
                   sx={{
-                    backgroundColor: 'primary.main',
+                    backgroundColor: 'info.main',
                     color: 'white',
                     height: '350px',
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
                     marginLeft:'100px',
-                    '&:hover': { backgroundColor: 'primary.light' },
+                    '&:hover': { backgroundColor: 'info.light' },
                   }}
                 >
                   <h2 className='pt-5'>Patient Information</h2>
@@ -80,14 +80,14 @@ const Dashboard = () => {
               <div className='container pb-5'>
                 <Box
                   sx={{
-                    backgroundColor: 'primary.main',
+                    backgroundColor: 'info.main',
                     color: 'white',
                     height: '350px',
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
                     marginLeft:'100px',
-                    '&:hover': { backgroundColor: 'primary.light' },
+                    '&:hover': { backgroundColor: 'info.light' },
                   }}
                 >
                   <h2 className='pt-5'>Last Consultation Details</h2>
@@ -108,14 +108,14 @@ const Dashboard = () => {
               <div className='container pb-5'>
                 <Box
                   sx={{
-                    backgroundColor: 'primary.main',
+                    backgroundColor: 'info.main',
                     color: 'white',
                     height: '350px',
                     width: '300px',
                     padding: '10px',
                     marginBottom:'px',
                     marginLeft:'100px',
-                    '&:hover': { backgroundColor: 'primary.light' },
+                    '&:hover': { backgroundColor: 'info.light' },
                   }}
                 >
                   <h2 className='pt-5'>Your Doctor </h2>
