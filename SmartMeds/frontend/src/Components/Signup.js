@@ -266,13 +266,15 @@ export default function Signup() {
               />
             </div>
             <div className='form-group'>
-              <label htmlFor='uploadImage'>Upload Patient Image</label>
+              <label htmlFor='uploadImage'style={{ width: '44%', marginLeft:140 }}>Upload Patient Image</label>
               <input
                 type='file'
                 className='form-control'
                 id='uploadImage'
                 accept='image/*'
                 required
+                style={{ width: '44%', marginLeft:140 }}
+                
               />
             </div>
           </>
