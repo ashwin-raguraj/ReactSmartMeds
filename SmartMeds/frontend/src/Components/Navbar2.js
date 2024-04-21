@@ -29,17 +29,7 @@ const Navbar2 = () => {
             <li className='nav-item'>
                 <Link to='/Dashboard'>Dashboard</Link>
             </li>
-            {/* <li className='nav-item'>
-                <Link to='/Order'>Orders</Link>
-            </li>
-            <li className='nav-item'>
-
-                <Link to='/Cart'>Cart</Link>
-
-            </li> */}
-            {/* <li className='nav-item'>
-                <Link to='/Checkout'>Checkout</Link>
-            </li> */}
+           
             <li className='nav-item'>
                 {/* <img src={require('../Assets/Profile.png')}  alt="" className='img-fluid w-50 profile-picture' onClick={toggleDropdown}/> */}
                 <ImMenu3 onClick={toggleDropdown} className='drop-down-menu-icon' size={37} />
