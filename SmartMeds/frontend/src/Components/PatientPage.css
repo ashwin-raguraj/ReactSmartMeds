@@ -21,6 +21,7 @@
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
+  
 }
 
 .new-consultation-button {
@@ -54,6 +55,7 @@
   display: block;
   margin-top: 10px;
   padding: 0%;
+  
 }
 
 .consultation-form input[type="text"],
@@ -155,7 +157,8 @@
 .patient-info {
   padding: 18px;
   font-size: 20px;
-  margin-left: -5px;
+  margin-left: 0px;
+  border-radius: 20px;
 }
 
 .button-container {
@@ -216,8 +219,8 @@ h1, h2 {
 }
 
 .consultation-form h2 {
-  background-color: #43c0ce;
-  color: #fff;
+  background-color: lightblue;
+  color:black;
   padding: 15px;
   margin-bottom: 0;
 }
@@ -266,4 +269,17 @@ h1, h2 {
 
 .consultation-form button[type="submit"]:hover {
   background-color: #45a049;
+}
+.consultation-completed {
+  text-align: center; /* Center-align the text */
+  margin-top: 50px; /* Adjust the top margin as needed */
+  
+}
+
+.consultation-completed p {
+  font-size: 2.2rem; /* Adjust the font size as needed */
+  font-weight: bold; /* Add bold font weight to the text */
+  color: #333; /* Set the text color */
+  
+
 }
