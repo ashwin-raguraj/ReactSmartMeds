@@ -4,6 +4,8 @@ import Footer from './Footer';
 import axios from 'axios';
 import './Dashboard.css';
 import Box from '@mui/material/Box';
+import { faPrescriptionBottleMedical } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Dashboard = () => {
   const [patientInfo, setPatientInfo] = useState({});
@@ -205,11 +207,12 @@ const Dashboard = () => {
             <div className='col-md-12'>
               <div className='container pb-5'>
                 <div className='container p-0 m-0'>
-                  <h3>Current Prescription</h3>
+
+                  <h3>  Current Prescription</h3>
                   <table className='table'>
                     <thead>
                       <tr>
-                        <th scope='col'>Medicine Name</th>
+                        <th scope='col'><FontAwesomeIcon icon={faPrescriptionBottleMedical} /> Medicine Name</th>
                         <th scope='col'>Dosage</th>
                         <th scope='col'>Qty</th>
                         <th scope='col'>Days</th>
