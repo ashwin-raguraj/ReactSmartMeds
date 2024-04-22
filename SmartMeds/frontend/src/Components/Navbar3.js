@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 import axios from 'axios';
 import { ImMenu3 } from 'react-icons/im';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 const Navbar3 = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -26,12 +29,14 @@ const Navbar3 = () => {
         </div> 
         <ul>
             <li className='nav-item'>
-                <Link to='/DocDashboard'>Dashboard</Link>
+                {/* <Link to='/DocDashboard'>Dashboard</Link> */}
+                <FontAwesomeIcon icon={faBell} size="xl" style={{color: "#1c4ee6",marginLeft: "-30px"}} />
             </li>
        
             <li className='nav-item'>
                 {/* <img src={require('../Assets/Profile.png')}  alt="" className='img-fluid w-50 profile-picture' onClick={toggleDropdown}/> */}
-                <ImMenu3 onClick={toggleDropdown} className='drop-down-menu-icon' size={37} />
+                {/* <ImMenu3 onClick={toggleDropdown} className='drop-down-menu-icon' size={37} /> */}
+                <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#1c4ee6",marginLeft: "-10px"}} />
                 {isDropdownOpen && (
                     <ul className="dropdown-menu d-flex flex-column">
                     <li><Link to='/About'>About us</Link></li>
