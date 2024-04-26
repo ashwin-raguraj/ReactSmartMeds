@@ -1,10 +1,13 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import axios from 'axios';
 import { ImMenu3 } from 'react-icons/im';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+
+
 const Navbar2 = () => {
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -21,6 +24,22 @@ const Navbar2 = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const [patientInfo, setPatientInfo] = useState({});
+const fetchDashboardData = async () => {
+    try {
+      const patientResponse = await axios.get('http://127.0.0.1:8000/patientinfo/');
+      if (patientResponse && patientResponse.data) setPatientInfo(patientResponse.data);
+
+     
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
   return (
     <nav className='navbar'>
         <div className='site-title'>
@@ -29,13 +48,17 @@ const Navbar2 = () => {
         </div> 
         <ul>
             <li className='nav-item'>
-                <Link to='/Dashboard'>Dashboard</Link>
+                {/* <Link to='/Dashboard'>Dashboard</Link> */}
+                <FontAwesomeIcon icon={faBell} size="xl" style={{color: "#1c4ee6",marginLeft: "-30px"}} />
+                
+                
             </li>
+            <p style={{ marginBottom: '-1px', marginRight:'10px'}} > Welcome, {patientInfo.firstName} {patientInfo.lastName} </p>
            
             <li className='nav-item'>
                 {/* <img src={require('../Assets/Profile.png')}  alt="" className='img-fluid w-50 profile-picture' onClick={toggleDropdown}/> */}
                 {/* <ImMenu3 onClick={toggleDropdown} className='drop-down-menu-icon' size={37} /> */}
-                <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#1c4ee6",marginLeft: "-10px"}} />
+                <FontAwesomeIcon  onClick={toggleDropdown} className='drop-down-menu-icon' icon={faCircleUser} size="2xl" style={{color: "#1c4ee6",marginLeft: "-10px"}} />
                 {isDropdownOpen && (
                     <ul className="dropdown-menu d-flex flex-column">
                     <li><Link to='/About'>About us</Link></li>
