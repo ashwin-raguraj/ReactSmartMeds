@@ -14,10 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
 
-from FoodApp.views import SignupView, LoginView, ConsultationView,DocInfoView,PatientInfoView,get_times,PatientSignoutView,DoctorSignoutView,DocDash,DocPatientView
+from FoodApp.views import SignupView, LoginView, ConsultationView,DocInfoView,PatientInfoView,get_times,PatientSignoutView,DoctorSignoutView,DocDash,DocPatientView,get_notifications
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -39,46 +40,7 @@ urlpatterns = [
     path('doctor/signout/', DoctorSignoutView.as_view(), name='signout'),
     path('docdash/',csrf_exempt( DocDash.as_view()), name='docdash'),
     path('doc/patients/',csrf_exempt( DocPatientView.as_view()), name='docpatient'),
-
-    # path('api/users/', UserList.as_view(), name='user-list'),
-    # path('api/users/<int:pk>/', UserDetail.as_view(), name='user-detail'),
-
-    # #dash Test Data
-    #  path('api/food/', food_list, name='food_list'),
- 
-    #  #posting a single review from user
-    #   path('review/create/', csrf_exempt(ReviewCreateView.as_view()), name='review-create'),
-    #  path('save-review/', csrf_exempt( SaveReviewView.as_view()), name='save_review'),        ######extra
-    #  path('get_reviews', csrf_exempt(get_reviews), name='get_reviews'),
-    
-
-    # path('status/', csrf_exempt(complaint_status), name='complaint_status'), ####extra
-    # #Actual restdata
-    # path('api/restdata/', get_rest_data, name='get_rest_data'),
-
-    # #Menu
-    # path('menu/',csrf_exempt(Menu.as_view()), name='Menu'),
-
-    # path('cart/', csrf_exempt(cart_api), name='cart_api'),
-    #   path('cart/truncate/', truncate_cart, name='truncate_cart'),
-
-    # path('order-recommendation/', OrderRecommendation.as_view(), name='order_recommendation'),
-    # path('rest-recommendation/', RestRecommendation.as_view(), name='rest_recommendation'),
-    
-
-
-
-
-    # ######Saving Data############
-    # #saving the reviews
-    # path('api/save_restaurants/', csrf_exempt(save_restaurants), name='save_restaurants'),
-    #  path('save_reviews', csrf_exempt(save_reviews), name='save_reviews'),
-    # path('save_orders', csrf_exempt(OrderCreateAPIView.as_view()), name='order-create'),
-    # path('api/save_users/', csrf_exempt(save_users), name='save_users'),
-
-    # #test data
-
-    # path('api/save_food_data/', csrf_exempt(SaveFoodDataView.as_view()), name='save_food_data'),
+    path('api/notifications/', get_notifications, name='get_notifications'),
 
 
 ]

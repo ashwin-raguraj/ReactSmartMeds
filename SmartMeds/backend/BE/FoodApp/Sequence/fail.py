@@ -1,4 +1,4 @@
-def alert():   
+def fail():   
     import serial
     import time
 
@@ -20,7 +20,7 @@ def alert():
 
     # Example commands
 
-    commands = ["x","p"]
+    commands = ["f"]
 
 
     try:

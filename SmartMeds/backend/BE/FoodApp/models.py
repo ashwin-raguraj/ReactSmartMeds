@@ -1,5 +1,6 @@
 from django.db import models
 import string, random
+from django.utils import timezone
 
 class Patient(models.Model):
     
@@ -77,6 +78,28 @@ class Time(models.Model):
 
     def __str__(self):
         return self.time.strftime('%H:%M:%S')
+    
+class PatientImg(models.Model):
+    
+    
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE,default='')
+    image_path = models.CharField(max_length=255)
+
+    class Meta:
+        db_table = 'patientImg'
+
+class Notification(models.Model):
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    medicine = models.CharField(max_length=100)
+    date = models.DateField(default=timezone.now)
+    time = models.TimeField(default=timezone.now)
+    qty = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.patient_id} - {self.medicine} - {self.date} - {self.time} - {self.qty}"
+
+    class Meta:
+        db_table = 'notifications'
     
 
 # # Create your models here.
